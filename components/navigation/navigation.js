@@ -41,7 +41,7 @@ function renderNavigation() {
     navigation.innerHTML = `
         <div class="workshop-nav-items">
             ${navigationItems
-                .map(item => `
+            .map(item => `
                     <button
                         class="workshop-nav-button${item.id === "theme" ? " active" : ""}"
                         data-section="${item.id}"
@@ -51,11 +51,13 @@ function renderNavigation() {
                         <span class="workshop-nav-label">${item.label}</span>
                     </button>
                 `)
-                .join("")}
+            .join("")}
         </div>
     `;
 
     bindNavigationEvents();
+
+    switchWorkshopSection("theme");
 }
 
 function bindNavigationEvents() {
@@ -79,9 +81,10 @@ function bindNavigationEvents() {
 }
 
 function switchWorkshopSection(section) {
-    console.log(`Switching to: ${section}`);
-
-    // Component panels will be wired up here later.
+    const configs = document.querySelectorAll(".workshop-config");
+    configs.forEach(config => {
+        config.hidden = config.dataset.config !== section;
+    });
 }
 
 renderNavigation();
