@@ -1,19 +1,26 @@
-# 🎨 WhimsyTheme
+# 🛠️ WhimsyWorkshop
 
-A tiny theme builder that turns colours into cute, usable UI themes.
+A tiny UI workshop for building cute, usable, customizable interfaces.
 
-WhimsyTheme lets you create a theme manually or **generate one from an image**. Upload an image, let WhimsyTheme analyse its colours, and watch them become a complete UI colour palette.
+WhimsyWorkshop is a collection of visual tools for designing UI components around a shared theme.
 
-> Give it a picture. Get a theme. ✨
+Instead of building each component in isolation, the goal is to create a **consistent UI system** — configure a theme, customize components, preview everything together, and eventually export the result as a ready-to-use CSS/JS bundle.
 
-## ✨ Features
+> Build it. Tweak it. Make it yours. ✨
 
-### 🎨 Manual Theme Builder
+## 🎨 Current Feature: Theme Builder
 
-Fine-tune your theme with individual colour controls:
+The Theme Builder is the first part of WhimsyWorkshop.
+
+It lets you create a complete UI theme manually or **generate one from an image**.
+
+### Manual Theme Builder
+
+Fine-tune individual theme colours:
 
 * Primary
 * Secondary
+* Accent
 * Danger
 * Success
 * Warning
@@ -23,21 +30,22 @@ Fine-tune your theme with individual colour controls:
 * Subtext
 * Border
 
-Each colour can be edited using a colour picker or a HEX value.
+Each colour can be edited using a colour picker or HEX value.
 
-### 🖼️ Generate from Image
+### 🖼️ Generate a Theme from an Image
 
-Upload an image and WhimsyTheme analyses its colours to generate a theme.
+Upload an image and WhimsyWorkshop analyses its colours to generate a usable UI palette.
 
-Currently, the image analysis considers:
+The current image analysis considers:
 
 * **Colour frequency** → Background and Surface
 * **Saturation** → Primary and Secondary
 * **Lightness** → Text and Subtext
 * **Colour blending** → Border
 * **Background normalization** → tones down extremely saturated backgrounds
+* **Accent selection** → derives an accent colour for interactive elements
 
-Supported image formats:
+Supported formats:
 
 * PNG
 * JPG / JPEG
@@ -45,42 +53,66 @@ Supported image formats:
 
 Highly saturated images are gently toned down when necessary so that an image doesn't accidentally turn the entire UI into an eyeball-destroying colour bomb.
 
-Yes, this feature was tested against a cursed Notepad++ screenshot.
+Yes, this was tested against a cursed Notepad++ screenshot.
 
 ### 👀 Live Preview
 
-See the generated theme applied to a sample application interface in real time.
+The generated theme is applied to a sample application interface in real time.
 
-The preview includes:
+The preview currently demonstrates:
 
 * Navigation
+* Links
 * Buttons
 * Cards
 * Form inputs
 * Warning notices
 * Success notices
 
+### 🖱️ Component States
+
+The current button styling includes:
+
+* **Hover** → Accent border and glow
+* **Focus** → Accent focus outline
+* **Active** → Subtle press effect
+* **Disabled** → Reduced opacity
+
+Links use the generated accent colour and remain underlined for readability.
+
 ### 📋 CSS Generation
 
-Switch between the live preview and generated CSS.
+WhimsyWorkshop can generate CSS based on the current theme.
 
-The generated theme uses CSS custom properties such as:
+Generated styles use CSS custom properties such as:
 
-```css
+```css id="8j2j7n"
 --color-primary
 --color-secondary
+--color-accent
 --color-background
 --color-surface
 --color-text
 ```
 
-CSS can be copied directly from the interface.
+The generated CSS currently includes theme variables and component styling for:
+
+* Buttons
+* Button states
+* Links
+* Inputs
+* Cards
+* Notices
+
+Generated CSS can be viewed and copied directly from the interface.
+
+---
 
 ## 🧠 How Image Theme Generation Works
 
-WhimsyTheme currently follows a simple colour-analysis pipeline:
+The current pipeline is intentionally simple:
 
-```text
+```text id="w8g5yl"
 Image
   ↓
 Extract colours
@@ -92,6 +124,8 @@ Calculate saturation
 Calculate lightness
   ↓
 Generate theme colours
+  ↓
+Normalize where necessary
   ↓
 Apply theme
   ↓
@@ -106,9 +140,22 @@ Extremely saturated background colours are normalized to produce a softer UI bac
 
 ### Primary & Secondary
 
-Highly saturated colours are preferred as accent colours.
+Highly saturated colours are preferred.
 
-Colours that are too close to the generated background or surface are filtered out to avoid producing accents that disappear into the UI.
+Colours that are too close to the generated background or surface are filtered out so that accents do not disappear into the UI.
+
+Maximum-saturation colours are avoided where possible so that near-black colours do not overwhelm the selection.
+
+### Accent
+
+Accent is used for interactive UI elements such as:
+
+* Links
+* Button hover borders
+* Button hover glow
+* Focus outlines
+
+The generated accent can also be manually adjusted.
 
 ### Text & Subtext
 
@@ -116,11 +163,81 @@ The background's lightness determines whether darker or lighter colours are sele
 
 ### Border
 
-The border colour is generated by blending the subtext and surface colours.
+The border colour is generated by blending subtext and surface colours.
+
+### Semantic Colours
+
+Danger, success, and warning remain independent semantic colours.
+
+Their opacity-based styling allows them to blend naturally with different generated backgrounds.
+
+---
+
+## 🏗️ Workshop Architecture
+
+WhimsyWorkshop is designed around **features rather than file types**.
+
+Each component or tool can contain the CSS and JavaScript it needs while sharing the same underlying theme.
+
+The current structure is evolving toward:
+
+```text id="m2q3f1"
+WhimsyWorkshop/
+│
+├── base/
+│   └── base.css
+│
+├── theme/
+│   ├── theme.css
+│   ├── builder.css
+│   ├── builder.js
+│   ├── css-generator.js
+│   ├── image-generator.js
+│   └── presets.js
+│
+└── assets/
+```
+
+The goal is for future components to build on top of the same theme rather than becoming separate mini-applications.
+
+---
+
+## 🧩 Planned Workshop Components
+
+Theme Builder is only the beginning.
+
+Future Workshop tools may include:
+
+* 🔘 Button Builder
+* 📝 Input Builder
+* 🗂️ Card Builder
+* 🔔 Notice / Alert Builder
+* 🧭 Navigation Builder
+* 🪟 Modal Builder
+* 📑 Form Builder
+* 🧩 More reusable UI components
+
+Each component should be configurable within the same Workshop preview, allowing different pieces of the UI to be designed together.
+
+Eventually, the Workshop should be able to generate a complete starter UI package rather than isolated snippets.
+
+```text id="j4k7wp"
+Configure Theme
+      ↓
+Build Components
+      ↓
+Preview Together
+      ↓
+Generate CSS / JS
+      ↓
+📦 Export Project
+```
+
+---
 
 ## 🧪 The Testing Methodology
 
-WhimsyTheme is currently being tested using a highly scientific methodology:
+WhimsyWorkshop is currently being tested using a highly scientific methodology:
 
 1. Upload a cute image.
 2. Admire the result.
@@ -135,24 +252,9 @@ WhimsyTheme is currently being tested using a highly scientific methodology:
 
 💀 **Cursed Notepad++ screenshot** — the chaos test.
 
-If the algorithm can survive both, we're probably doing something right.
+If the theme generator can survive both, we're probably doing something right.
 
-## 🚧 Future Ideas
-
-WhimsyTheme is still a work in progress.
-
-Some ideas for future versions:
-
-* 🎨 Theme presets
-* 🌈 More advanced colour extraction
-* ♿ WCAG contrast checking
-* 🖌️ Accent colour scales
-* 🖱️ Automatic hover states
-* ✨ Focus / active colour variants
-* 📦 Theme export
-* 🌙 Better light/dark theme handling
-* 🧩 More semantic colour tokens
-* 🖼️ More image analysis options
+---
 
 ## 🛠️ Built With
 
@@ -162,18 +264,39 @@ Some ideas for future versions:
 
 No backend required.
 
+No framework required.
+
+No build step.
+
+Just vibes. ✨
+
+---
+
 ## 🚀 Running Locally
 
 Clone the repository and open `index.html` in a browser.
 
 That's it.
 
-No build step. No complicated setup. Just vibes. ✨
+---
 
 ## 📌 Project Status
 
 **Early development**
 
-The core theme builder and image-based theme generation are working, but the colour-generation algorithm is still being refined and tested against increasingly cursed images.
+The **Theme Builder** is the first working part of WhimsyWorkshop.
 
-More features coming soon. 🐱🎨
+Current functionality includes:
+
+* Manual theme editing
+* Image-based theme generation
+* Theme normalization
+* Live preview
+* CSS generation
+* Accent-based links
+* Button interaction states
+* Preset themes
+
+The next stage is expanding the Workshop beyond themes into reusable UI component builders while keeping everything connected to the same underlying design system.
+
+More components coming soon. 🐱🎨
