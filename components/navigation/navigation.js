@@ -5,6 +5,11 @@ const navigationItems = [
         icon: "🎨"
     },
     {
+        id: "global",
+        label: "Global",
+        icon: "🌐"
+    },
+    {
         id: "buttons",
         label: "Buttons",
         icon: "🔘"

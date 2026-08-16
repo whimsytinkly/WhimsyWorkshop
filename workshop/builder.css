@@ -100,16 +100,12 @@
 .button:hover {
   border-color: var(--color-accent);
   box-shadow:
-    0 0 6px color-mix(
-      in srgb,
+    0 0 6px color-mix(in srgb,
       var(--color-accent) 70%,
-      transparent
-    ),
-    0 0 14px color-mix(
-      in srgb,
+      transparent),
+    0 0 14px color-mix(in srgb,
       var(--color-accent) 45%,
-      transparent
-    );
+      transparent);
 }
 
 
@@ -246,6 +242,7 @@ a {
 
 .notice {
   display: flex;
+  align-items: baseline;
   flex-wrap: wrap;
   gap: var(--space-xs);
   padding: var(--space-md);
@@ -427,6 +424,8 @@ a {
   padding: var(--space-xl);
   background: var(--color-surface);
   border-right: 1px solid var(--color-border);
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 
@@ -455,19 +454,15 @@ a {
 }
 
 .workshop-nav-button:hover {
-  background: color-mix(
-    in srgb,
-    var(--color-accent) 10%,
-    transparent
-  );
+  background: color-mix(in srgb,
+      var(--color-accent) 10%,
+      transparent);
 }
 
 .workshop-nav-button.active {
-  background: color-mix(
-    in srgb,
-    var(--color-accent) 15%,
-    transparent
-  );
+  background: color-mix(in srgb,
+      var(--color-accent) 15%,
+      transparent);
   color: var(--color-accent);
 }
 
@@ -493,7 +488,6 @@ a {
   display: none;
 }
 
-
 @media (max-width: 800px) {
 
   .workshop {
@@ -502,8 +496,8 @@ a {
 
 
   .workshop-panel {
-    border-right: 0;
-    border-bottom: 1px solid var(--color-border);
+    min-width: 0;
+    overflow-x: hidden;
   }
 
 

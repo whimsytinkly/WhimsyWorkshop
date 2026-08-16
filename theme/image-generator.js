@@ -51,7 +51,7 @@ imageInput.addEventListener("change", () => {
 
         const pixels = imageData.data;
         const colorData = getColorFrequency(pixels);
-        console.table(colorData);
+        // console.table(colorData);
         if (colorData.length < 2) {
             showImageError(
                 "Not enough colours were found to generate a theme."
@@ -399,7 +399,7 @@ function applyGeneratedTheme({
         input.value = color.hex ?? color;
         input.dispatchEvent(new Event("input"));
     }
-    applyTheme();
+    applyThemeConfig();
 }
 
 /**

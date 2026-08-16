@@ -1,0 +1,134 @@
+.global-section {
+  margin-bottom: var(--space-lg);
+}
+
+
+.global-section>summary {
+  margin-bottom: var(--space-md);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+.global-group {
+  margin-bottom: var(--space-lg);
+  padding: var(--space-sm) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.global-group:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+
+.global-group h3 {
+  margin: 0 0 var(--space-sm);
+  font-size: 0.95rem;
+}
+
+
+.global-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+
+.global-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(100px, 140px);
+    align-items: center;
+    gap: var(--space-md);
+}
+
+
+.global-field label {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+
+.global-field input,
+.global-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 36px;
+  line-height: 1.2;
+}
+
+
+.typography-heading {
+  margin-bottom: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.typography-heading summary {
+  padding: var(--space-sm) 0;
+  margin-bottom: 0;
+}
+
+.typography-heading[open] summary {
+  margin-bottom: 0;
+}
+
+.typography-heading .global-fields {
+  padding: 0 0 var(--space-md);
+}
+
+
+.builder-section .typography-heading {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.builder-section .typography-heading summary {
+  margin: 0;
+  padding: var(--space-sm) 0;
+}
+
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-base);
+    line-height: var(--line-height-base);
+}
+
+.subtext {
+    font-size: var(--font-size-subtext);
+    font-weight: var(--font-weight-subtext);
+    line-height: var(--line-height-subtext);
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-h1);
+    line-height: var(--line-height-h1);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-h2);
+    line-height: var(--line-height-h2);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--line-height-h3);
+}
+
+h4 {
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-h4);
+    line-height: var(--line-height-h4);
+}
+
+h5 {
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-h5);
+    line-height: var(--line-height-h5);
+}
