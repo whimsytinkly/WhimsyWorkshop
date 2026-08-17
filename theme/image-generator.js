@@ -26,6 +26,8 @@ imageInput.addEventListener("change", () => {
         return;
     }
 
+    presetSelect.value = "custom";
+
     const url = URL.createObjectURL(file);
 
     imagePreview.src = url;

@@ -112,6 +112,9 @@ for (const [key, value] of Object.entries(themeSettings)) {
         picker.value.toUpperCase();
 
       hex.classList.remove("invalid");
+      if (document.activeElement === picker) {
+        presetSelect.value = "custom";
+      }
 
     }
   );
@@ -121,15 +124,18 @@ for (const [key, value] of Object.entries(themeSettings)) {
     "input",
     () => {
 
+
       const value =
         hex.value.trim();
-
 
       if (validHex(value)) {
 
         picker.value = value;
 
         hex.classList.remove("invalid");
+        if (document.activeElement === hex) {
+          presetSelect.value = "custom";
+        }
 
       } else {
 
@@ -282,14 +288,14 @@ function generateThemeCSS() {
 
 function applyThemeConfig() {
 
-    const themeCSS =
-        generateThemeCSS();
+  const themeCSS =
+    generateThemeCSS();
 
-    if (themeCSS === null) {
-        return;
-    }
+  if (themeCSS === null) {
+    return;
+  }
 
-    applyPreview();
+  applyPreview();
 }
 
 
@@ -328,17 +334,17 @@ document
         document
           .querySelector("#preview-view")
           .style.display =
-            isPreview
-              ? "block"
-              : "none";
+          isPreview
+            ? "block"
+            : "none";
 
 
         document
           .querySelector("#css-view")
           .style.display =
-            isPreview
-              ? "none"
-              : "block";
+          isPreview
+            ? "none"
+            : "block";
 
 
         document
@@ -413,6 +419,13 @@ const presetSelect =
   document.querySelector(
     "#theme-preset"
   );
+
+const customOption = document.createElement("option");
+
+customOption.value = "custom";
+customOption.textContent = "Custom";
+
+presetSelect.append(customOption);
 
 
 for (

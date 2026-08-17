@@ -7,16 +7,17 @@
 
 function generatePreview() {
 
-    const globalCSS =
-        generateGlobalCSS();
+    const globalCSS = generateGlobalCSS();
 
-    const themeCSS =
-        generateThemeCSS();
+    const themeCSS = generateThemeCSS();
+
+    const buttonCSS = generateButtonCSS();
 
 
     return `
         ${globalCSS}
         ${themeCSS}
+        ${buttonCSS}
     `;
 }
 
@@ -56,6 +57,8 @@ function applyPreview() {
         }
     `;
 
+    generateCSS();
+
 }
 
 document.addEventListener(
@@ -75,3 +78,6 @@ document.addEventListener(
 
     }
 );
+
+
+applyPreview();
