@@ -92,7 +92,7 @@ for (const [key, value] of Object.entries(themeSettings)) {
 
   hex.type = "text";
 
-  hex.className = "hex-input";
+  hex.className = "hex-input input input-medium";
 
   hex.value = value;
 

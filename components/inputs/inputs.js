@@ -1,25 +1,23 @@
 // ================================
-// Button Settings
+// Input Settings
 // ================================
 
-const buttonSizeLabels = {
+const inputSizeLabels = {
     small: "Small",
     medium: "Medium",
     large: "Large"
 };
 
 
-const buttonSettings = {
+const inputSettings = {
 
     small: {
         paddingVertical: "xs",
         paddingHorizontal: "sm",
         typography: "base",
-        weight: "600",
-
+        weight: "400",
         custom: {
             size: "14px",
-            weight: "600",
             lineHeight: "1.2"
         }
     },
@@ -28,11 +26,9 @@ const buttonSettings = {
         paddingVertical: "sm",
         paddingHorizontal: "md",
         typography: "base",
-        weight: "600",
-
+        weight: "400",
         custom: {
             size: "16px",
-            weight: "600",
             lineHeight: "1.5"
         }
     },
@@ -41,11 +37,9 @@ const buttonSettings = {
         paddingVertical: "md",
         paddingHorizontal: "lg",
         typography: "base",
-        weight: "600",
-
+        weight: "400",
         custom: {
             size: "18px",
-            weight: "600",
             lineHeight: "1.4"
         }
     }
@@ -54,14 +48,14 @@ const buttonSettings = {
 
 
 // ================================
-// Button Configuration UI
+// Input Configuration UI
 // ================================
 
-function generateButtonConfig() {
+function generateInputConfig() {
 
     const container =
         document.querySelector(
-            '[data-config="buttons"]'
+            '[data-config="inputs"]'
         );
 
     if (!container) {
@@ -75,13 +69,13 @@ function generateButtonConfig() {
 
             <div class="global-fields">
 
-                ${Object.entries(buttonSettings)
+                ${Object.entries(inputSettings)
                     .map(([size, settings]) => `
 
                         <div class="global-group">
 
                             <h5>
-                                ${buttonSizeLabels[size]}
+                                ${inputSizeLabels[size]}
                             </h5>
 
 
@@ -92,16 +86,16 @@ function generateButtonConfig() {
                                 <div class="global-field">
 
                                     <label
-                                        for="button-${size}-padding-vertical">
+                                        for="input-${size}-padding-vertical">
                                         Padding vertical
                                     </label>
 
                                     <select
-                                        id="button-${size}-padding-vertical"
-                                        data-button-size="${size}"
+                                        id="input-${size}-padding-vertical"
+                                        data-input-size="${size}"
                                         data-property="paddingVertical">
 
-                                        ${generateButtonSpacingOptions(
+                                        ${generateInputSpacingOptions(
                                             settings.paddingVertical
                                         )}
 
@@ -115,16 +109,16 @@ function generateButtonConfig() {
                                 <div class="global-field">
 
                                     <label
-                                        for="button-${size}-padding-horizontal">
+                                        for="input-${size}-padding-horizontal">
                                         Padding horizontal
                                     </label>
 
                                     <select
-                                        id="button-${size}-padding-horizontal"
-                                        data-button-size="${size}"
+                                        id="input-${size}-padding-horizontal"
+                                        data-input-size="${size}"
                                         data-property="paddingHorizontal">
 
-                                        ${generateButtonSpacingOptions(
+                                        ${generateInputSpacingOptions(
                                             settings.paddingHorizontal
                                         )}
 
@@ -136,10 +130,10 @@ function generateButtonConfig() {
                                 <!-- Typography -->
 
                                 <div
-                                    id="button-${size}-typography-config"
+                                    id="input-${size}-typography-config"
                                     class="global-fields">
 
-                                    ${generateButtonTypographyConfig(
+                                    ${generateInputTypographyConfig(
                                         size,
                                         settings
                                     )}
@@ -157,9 +151,9 @@ function generateButtonConfig() {
 
 
             <button
-                id="apply-buttons"
+                id="apply-inputs"
                 class="button button-primary button-medium">
-                Apply Buttons
+                Apply Inputs
             </button>
 
         </section>
@@ -167,45 +161,35 @@ function generateButtonConfig() {
     `;
 
 
-    bindButtonEvents();
+    bindInputEvents();
 
 }
 
 
 // ================================
-// Button Typography Configuration
+// Typography Configuration
 // ================================
 
-function generateButtonTypographyConfig(
+function generateInputTypographyConfig(
     size,
     settings
 ) {
-
-    const isCustom =
-        settings.typography === "custom";
-
-
-    const selectedWeight =
-        isCustom
-            ? settings.custom.weight
-            : settings.weight;
-
 
     return `
 
         <div class="global-field">
 
             <label
-                for="button-${size}-typography">
+                for="input-${size}-typography">
                 Typography
             </label>
 
             <select
-                id="button-${size}-typography"
-                data-button-size="${size}"
+                id="input-${size}-typography"
+                data-input-size="${size}"
                 data-property="typography">
 
-                ${generateButtonTypographyOptions(
+                ${generateInputTypographyOptions(
                     settings.typography
                 )}
 
@@ -214,31 +198,31 @@ function generateButtonTypographyConfig(
         </div>
 
 
-        ${generateButtonCustomTypographyFields(
-            size,
-            settings
-        )}
-
-
         <div class="global-field">
 
             <label
-                for="button-${size}-weight">
+                for="input-${size}-weight">
                 Weight
             </label>
 
             <select
-                id="button-${size}-weight"
-                data-button-size="${size}"
+                id="input-${size}-weight"
+                data-input-size="${size}"
                 data-property="weight">
 
-                ${generateButtonWeightOptions(
-                    selectedWeight
+                ${generateInputWeightOptions(
+                    settings.weight
                 )}
 
             </select>
 
         </div>
+
+
+        ${generateInputCustomTypographyFields(
+            size,
+            settings
+        )}
 
     `;
 
@@ -249,14 +233,13 @@ function generateButtonTypographyConfig(
 // Custom Typography Fields
 // ================================
 
-function generateButtonCustomTypographyFields(
+function generateInputCustomTypographyFields(
     size,
     settings
 ) {
 
     if (
-        settings.typography !==
-        "custom"
+        settings.typography !== "custom"
     ) {
         return "";
     }
@@ -267,14 +250,14 @@ function generateButtonCustomTypographyFields(
         <div class="global-field">
 
             <label
-                for="button-${size}-custom-size">
+                for="input-${size}-custom-size">
                 Size
             </label>
 
             <input
-                id="button-${size}-custom-size"
+                id="input-${size}-custom-size"
                 type="text"
-                data-button-size="${size}"
+                data-input-size="${size}"
                 data-custom-property="size"
                 class="input input-medium"
                 value="${settings.custom.size}"
@@ -286,14 +269,14 @@ function generateButtonCustomTypographyFields(
         <div class="global-field">
 
             <label
-                for="button-${size}-custom-line-height">
+                for="input-${size}-custom-line-height">
                 Line height
             </label>
 
             <input
-                id="button-${size}-custom-line-height"
+                id="input-${size}-custom-line-height"
                 type="text"
-                data-button-size="${size}"
+                data-input-size="${size}"
                 data-custom-property="lineHeight"
                 class="input input-medium"
                 value="${settings.custom.lineHeight}"
@@ -310,13 +293,9 @@ function generateButtonCustomTypographyFields(
 // Spacing Options
 // ================================
 
-function generateButtonSpacingOptions(
-    selected
-) {
+function generateInputSpacingOptions(selected) {
 
-    return Object.keys(
-        globalSettings.spacing
-    )
+    return Object.keys(globalSettings.spacing)
         .map(size => `
 
             <option
@@ -335,9 +314,7 @@ function generateButtonSpacingOptions(
 // Typography Options
 // ================================
 
-function generateButtonTypographyOptions(
-    selected
-) {
+function generateInputTypographyOptions(selected) {
 
     const options = [
         ["base", "Base"],
@@ -365,9 +342,7 @@ function generateButtonTypographyOptions(
 // Weight Options
 // ================================
 
-function generateButtonWeightOptions(
-    selected
-) {
+function generateInputWeightOptions(selected) {
 
     const weights = [
         "400",
@@ -392,15 +367,15 @@ function generateButtonWeightOptions(
 
 }
 
-
 // ================================
 // Event Binding
 // ================================
-function bindButtonEvents() {
+
+function bindInputEvents() {
 
     const container =
         document.querySelector(
-            '[data-config="buttons"]'
+            '[data-config="inputs"]'
         );
 
 
@@ -409,21 +384,19 @@ function bindButtonEvents() {
     }
 
 
-    // ================================
     // Padding + Weight
-    // ================================
 
     container.addEventListener(
         "change",
         event => {
 
-            const control =
+            const target =
                 event.target;
 
 
             if (
-                !control.matches(
-                    "[data-button-size][data-property]"
+                !target.matches(
+                    "[data-input-size][data-property]"
                 )
             ) {
                 return;
@@ -431,124 +404,51 @@ function bindButtonEvents() {
 
 
             const size =
-                control.dataset.buttonSize;
+                target.dataset.inputSize;
 
             const property =
-                control.dataset.property;
+                target.dataset.property;
 
 
-            // Typography is handled separately below
+            // Typography gets handled separately
 
             if (
                 property ===
                 "typography"
             ) {
-                return;
-            }
+
+                inputSettings[size].typography =
+                    target.value;
 
 
-            // Weight
-
-            if (
-                property ===
-                "weight"
-            ) {
-
-                if (
-                    buttonSettings[size].typography ===
-                    "custom"
-                ) {
-
-                    buttonSettings[size]
-                        .custom.weight =
-                        control.value;
-
-                } else {
-
-                    buttonSettings[size]
-                        .weight =
-                        control.value;
-
-                }
+                refreshInputTypography(
+                    size
+                );
 
                 return;
             }
 
 
-            // Padding
-
-            buttonSettings[size][property] =
-                control.value;
+            inputSettings[size][property] =
+                target.value;
 
         }
     );
 
 
-    // ================================
-    // Typography
-    // ================================
-
-    container.addEventListener(
-        "change",
-        event => {
-
-            const control =
-                event.target;
-
-
-            if (
-                !control.matches(
-                    '[data-button-size][data-property="typography"]'
-                )
-            ) {
-                return;
-            }
-
-
-            const size =
-                control.dataset.buttonSize;
-
-
-            buttonSettings[size].typography =
-                control.value;
-
-
-            const config =
-                document.querySelector(
-                    `#button-${size}-typography-config`
-                );
-
-
-            if (!config) {
-                return;
-            }
-
-
-            config.innerHTML =
-                generateButtonTypographyConfig(
-                    size,
-                    buttonSettings[size]
-                );
-
-        }
-    );
-
-
-    // ================================
     // Custom Typography
-    // ================================
 
     container.addEventListener(
         "input",
         event => {
 
-            const control =
+            const target =
                 event.target;
 
 
             if (
-                !control.matches(
-                    "[data-button-size][data-custom-property]"
+                !target.matches(
+                    "[data-input-size][data-custom-property]"
                 )
             ) {
                 return;
@@ -556,27 +456,24 @@ function bindButtonEvents() {
 
 
             const size =
-                control.dataset.buttonSize;
+                target.dataset.inputSize;
 
             const property =
-                control.dataset.customProperty;
+                target.dataset.customProperty;
 
 
-            buttonSettings[size]
-                .custom[property] =
-                control.value;
+            inputSettings[size].custom[property] =
+                target.value;
 
         }
     );
 
 
-    // ================================
-    // Apply Buttons
-    // ================================
+    // Apply Inputs
 
     document
         .querySelector(
-            "#apply-buttons"
+            "#apply-inputs"
         )
         ?.addEventListener(
             "click",
@@ -591,86 +488,58 @@ function bindButtonEvents() {
 
 
 // ================================
-// Button Weight Events
+// Refresh Typography UI
 // ================================
 
-function bindButtonWeightEvent(
-    size
-) {
+function refreshInputTypography(size) {
 
-    const weight =
+    const config =
         document.querySelector(
-            `#button-${size}-weight`
+            `#input-${size}-typography-config`
         );
 
 
-    if (!weight) {
+    if (!config) {
         return;
     }
 
 
-    weight.addEventListener(
-        "change",
-        event => {
-
-            if (
-                buttonSettings[size].typography ===
-                "custom"
-            ) {
-
-                buttonSettings[size]
-                    .custom.weight =
-                    event.target.value;
-
-            } else {
-
-                buttonSettings[size]
-                    .weight =
-                    event.target.value;
-
-            }
-
-        }
-    );
+    config.innerHTML =
+        generateInputTypographyConfig(
+            size,
+            inputSettings[size]
+        );
 
 }
+
 
 
 // ================================
 // Custom Typography Events
 // ================================
 
-function bindButtonCustomTypographyEvents(
-    size
-) {
-
-    const selector =
-        size
-            ? `[data-button-size="${size}"][data-custom-property]`
-            : "[data-button-size][data-custom-property]";
-
+function bindInputCustomTypographyEvents() {
 
     document
-        .querySelectorAll(selector)
+        .querySelectorAll(
+            "[data-input-size][data-custom-property]"
+        )
         .forEach(input => {
 
-            input.addEventListener(
-                "input",
+            input.oninput =
                 event => {
 
-                    const buttonSize =
-                        event.target.dataset.buttonSize;
+                    const size =
+                        event.target.dataset.inputSize;
 
                     const property =
                         event.target.dataset.customProperty;
 
 
-                    buttonSettings[buttonSize]
-                        .custom[property] =
+                    inputSettings[size].custom[property] =
                         event.target.value;
 
-                }
-            );
+                };
 
         });
 
@@ -681,10 +550,10 @@ function bindButtonCustomTypographyEvents(
 // Initialise
 // ================================
 
-function initButtonBuilder() {
+function initInputBuilder() {
 
-    generateButtonConfig();
+    generateInputConfig();
 
 }
 
-initButtonBuilder();
+initInputBuilder();

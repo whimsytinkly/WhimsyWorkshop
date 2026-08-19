@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="global/global.css">
   <link rel="stylesheet" href="components/navigation/navigation.css">
   <link rel="stylesheet" href="components/buttons/buttons.css">
+  <link rel="stylesheet" href="components/inputs/inputs.css">
 </head>
 
 <body>
@@ -293,13 +294,13 @@
 
                 <div class="card-content">
 
-                  <label for="example-input">
-                    Name
-                  </label>
-
-                  <input id="example-input" class="input" placeholder="Example input">
-
-
+                  <label for="example-input-small"> Small Input </label>
+                  <input id="example-input-small" class="input input-small" placeholder="Small input">
+                  <label for="example-input-medium"> Medium Input</label>
+                  <input id="example-input-medium" class="input input-medium" placeholder="Medium input">
+                  <label for="example-input-large"> Large Input </label>
+                  <input id="example-input-large" class="input input-large" placeholder="Large input">
+                  <textarea class="textarea textarea-medium" placeholder="Textarea"></textarea>
                   <div class="notice notice-warning">
 
                     <strong>
@@ -380,10 +381,14 @@
 
   <!-- Components -->
   <!-- ... -->
-   
+
   <!-- Buttons -->
   <script src="components/buttons/buttons.js"></script>
   <script src="components/buttons/css-generator.js"></script>
+
+  <!-- Inputs -->
+  <script src="components/inputs/inputs.js"></script>
+  <script src="components/inputs/css-generator.js"></script>
 
   <!-- Navigation -->
   <script src="components/navigation/navigation.js"></script>

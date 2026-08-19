@@ -46,21 +46,6 @@ a {
 }
 
 
-// Generates CSS for input fields
-function generateInputCSS() {
-    return `
-.input {
-  width: 100%;
-  min-height: 40px;
-  padding: 8px 12px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  color: var(--color-text);
-  background: var(--color-surface);
-}
-`;
-}
-
 // Generates CSS for Cards
 function generateCardCSS() {
     return `

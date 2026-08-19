@@ -13,11 +13,14 @@ function generatePreview() {
 
     const buttonCSS = generateButtonCSS();
 
+    const inputCSS = generateInputCSS();
+
 
     return `
         ${globalCSS}
         ${themeCSS}
         ${buttonCSS}
+        ${inputCSS}
     `;
 }
 

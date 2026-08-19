@@ -179,6 +179,7 @@ function generateGlobalFields(name) {
                             type="text"
                             data-global="${name}"
                             data-property="${key}"
+                            class="input input-medium"
                             value="${value}"
                         >
 
@@ -324,6 +325,7 @@ function generateTypographyFields(
                     type="text"
                     data-typography="${name}"
                     data-property="size"
+                    class="input input-medium"
                     value="${settings.size}"
                 >
 
@@ -345,6 +347,7 @@ function generateTypographyFields(
                     step="100"
                     data-typography="${name}"
                     data-property="weight"
+                    class="input input-medium"
                     value="${settings.weight}"
                 >
 
@@ -363,6 +366,7 @@ function generateTypographyFields(
                     type="text"
                     data-typography="${name}"
                     data-property="lineHeight"
+                    class="input input-medium"
                     value="${settings.lineHeight}"
                 >
 
