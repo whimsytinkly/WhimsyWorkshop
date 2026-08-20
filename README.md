@@ -1,302 +1,270 @@
-# 🛠️ WhimsyWorkshop
+# ✨ WhimsyWorkshop
 
-A tiny UI workshop for building cute, usable, customizable interfaces.
+A tiny, slightly whimsical design-system workshop for building **themeable CSS components**.
 
-WhimsyWorkshop is a collection of visual tools for designing UI components around a shared theme.
+WhimsyWorkshop lets you configure global design tokens and component styles, preview them live, and generate reusable CSS for your own projects.
 
-Instead of building each component in isolation, the goal is to create a **consistent UI system** — configure a theme, customize components, preview everything together, and eventually export the result as a ready-to-use CSS/JS bundle.
+The goal isn't to build the whole app for you.
 
-> Build it. Tweak it. Make it yours. ✨
+It's to build the **design system underneath it**.
 
-## 🎨 Current Feature: Theme Builder
+---
 
-The Theme Builder is the first part of WhimsyWorkshop.
+## 🌱 Current Status
 
-It lets you create a complete UI theme manually or **generate one from an image**.
+WhimsyWorkshop is being built incrementally, starting with the core theme system and expanding into reusable components.
 
-### Manual Theme Builder
+### 🎨 Theme
 
-Fine-tune individual theme colours:
+* Color system
+* Typography
+* Spacing
+* Border radius
+* Shadows
+* Theme presets
+* Custom theme editing
+* Image-based theme generation
+* Live preview
+* Generated CSS
+* Preset automatically switches to **Custom** when values are manually changed
+* Generated CSS and live preview use the same resolved configuration
 
-* Primary
-* Secondary
-* Accent
-* Danger
+### 🔘 Buttons
+
+* Small / Medium / Large sizes
+* Padding linked to global spacing
+* Typography linked to global typography
+* Custom typography support
+* Live preview for all sizes
+* Theme-controlled colours and states
+* Generated CSS
+
+### 📝 Inputs
+
+* Small / Medium / Large sizes
+* Text inputs
+* Textareas
+* Padding linked to global spacing
+* Typography linked to global typography
+* Custom typography support
+* Live preview
+* Generated CSS
+
+### 🃏 Cards
+
+* Main Card
+* Sub Card
+* Padding linked to global spacing
+* Header background linked to Theme colours
+* Card background linked to Theme colours
+* Radius linked to global radius
+* Multi-select border sides
+* Border colour inherited from Theme
+* Small / Medium / Large / None shadows
+* Main + Sub card preview
+* Generated CSS
+
+---
+
+## 🧠 Design Philosophy
+
+WhimsyWorkshop follows one very important rule:
+
+> **A configuration should change the whole system, not just the preview.**
+
+When a global value changes, components using that value should update with it.
+
+For example:
+
+```css
+--space-md: 16px;
+```
+
+Buttons, Inputs and Cards can all reference that token rather than storing their own unrelated values.
+
+Likewise, component colours should reference Theme tokens instead of introducing unnecessary custom colours.
+
+This keeps the generated CSS:
+
+* Consistent
+* Reusable
+* Themeable
+* Easy to maintain
+* Actually useful outside the Workshop
+
+---
+
+## 🧩 Component Architecture
+
+Components are designed around global design tokens wherever possible.
+
+```text
+Theme
+ ├── Colours
+ ├── Typography
+ ├── Spacing
+ ├── Radius
+ └── Shadows
+
+Components
+ ├── Buttons
+ ├── Inputs
+ ├── Cards
+ └── Tabs
+      ...
+```
+
+Components can add their own configuration where necessary, but should avoid duplicating values that already belong to the global Theme.
+
+---
+
+## 🛠️ Planned Components
+
+### 🟢 Next
+
+#### Tabs
+
+* Presets
+* Colour
+* Border sides
+* Border radius
+* Shape / preset behaviour
+* File-tab style
+* Active tab without bottom border
+* Preset → Custom when edited
+* Complete preset implementation in generated CSS
+* Live preview
+
+### 🟢 After Tabs
+
+#### Notices + Toasts
+
+* Info
 * Success
 * Warning
-* Background
-* Surface
-* Text
-* Subtext
-* Border
+* Error
+* Shared notice styling
+* Individual semantic colours
+* Toast position
+* Default timeout
+* Button-triggered Toast preview
 
-Each colour can be edited using a colour picker or HEX value.
+### 🟡 Stretch Goal
 
-### 🖼️ Generate a Theme from an Image
+#### Layout
 
-Upload an image and WhimsyWorkshop analyses its colours to generate a usable UI palette.
+* Header on/off
+* Sidebar on/off
+* Layout presets
+* 50/50, 70/30, etc.
+* Add/remove columns
+* Percentage-based sizing
+* Automatic remaining-percentage calculation
 
-The current image analysis considers:
+---
 
-* **Colour frequency** → Background and Surface
-* **Saturation** → Primary and Secondary
-* **Lightness** → Text and Subtext
-* **Colour blending** → Border
-* **Background normalization** → tones down extremely saturated backgrounds
-* **Accent selection** → derives an accent colour for interactive elements
+## 🧹 CSS Generation
 
-Supported formats:
+WhimsyWorkshop generates CSS from the resolved configuration.
 
-* PNG
-* JPG / JPEG
-* WebP
+Generated CSS is also passed through a lightweight formatter to keep the output readable and consistent.
 
-Highly saturated images are gently toned down when necessary so that an image doesn't accidentally turn the entire UI into an eyeball-destroying colour bomb.
+The formatter handles things such as:
 
-Yes, this was tested against a cursed Notepad++ screenshot.
+* Normalising line endings
+* Removing tabs
+* Cleaning excessive spaces
+* Joining values split across lines after `:`
+* Formatting braces
+* Preserving intentional blank lines
+* Keeping multi-value declarations readable
 
-### 👀 Live Preview
+The goal is not to replace a full CSS parser, but to make generated CSS pleasant enough to actually use.
 
-The generated theme is applied to a sample application interface in real time.
+---
 
-The preview currently demonstrates:
+## 🚧 Project Status
 
-* Navigation
-* Links
-* Buttons
-* Cards
-* Form inputs
-* Warning notices
-* Success notices
+This is very much a **build-as-I-go personal project**.
 
-### 🖱️ Component States
+The first version is intentionally being developed component by component rather than trying to create a giant visual builder all at once.
 
-The current button styling includes:
+Current focus:
 
-* **Hover** → Accent border and glow
-* **Focus** → Accent focus outline
-* **Active** → Subtle press effect
-* **Disabled** → Reduced opacity
-
-Links use the generated accent colour and remain underlined for readability.
-
-### 📋 CSS Generation
-
-WhimsyWorkshop can generate CSS based on the current theme.
-
-Generated styles use CSS custom properties such as:
-
-```css id="8j2j7n"
---color-primary
---color-secondary
---color-accent
---color-background
---color-surface
---color-text
+```text
+Theme       ✅
+Buttons     ✅
+Inputs      ✅
+Cards       ✅
+Tabs        🔜
+Notices     🔜
+Toasts      🔜
+Layout      🟡
 ```
 
-The generated CSS currently includes theme variables and component styling for:
+There will probably be questionable decisions, tiny disasters, and at least a few moments where something mysteriously disappears from the preview.
 
-* Buttons
-* Button states
-* Links
-* Inputs
-* Cards
-* Notices
-
-Generated CSS can be viewed and copied directly from the interface.
+That's part of the workshop. ✨
 
 ---
 
-## 🧠 How Image Theme Generation Works
+## 🤝 Co-Collaborators
 
-The current pipeline is intentionally simple:
+### Shevaun
 
-```text id="w8g5yl"
-Image
-  ↓
-Extract colours
-  ↓
-Count colour frequency
-  ↓
-Calculate saturation
-  ↓
-Calculate lightness
-  ↓
-Generate theme colours
-  ↓
-Normalize where necessary
-  ↓
-Apply theme
-  ↓
-✨ Pretty UI
-```
+**Creator / Builder**
 
-### Background & Surface
+The human responsible for the ideas, design decisions, implementation, debugging, and occasionally asking:
 
-The most frequent colours in the image are used as the starting point for the background and surface.
+> "why did it poof"
 
-Extremely saturated background colours are normalized to produce a softer UI background while retaining the original hue.
+### ChatGPT
 
-### Primary & Secondary
+**AI Coding Co-Collaborator / Development Buddy**
 
-Highly saturated colours are preferred.
+Helps with:
 
-Colours that are too close to the generated background or surface are filtered out so that accents do not disappear into the UI.
+* Architecture brainstorming
+* CSS and JavaScript implementation
+* Debugging
+* Refactoring
+* Design-system decisions
+* Feature planning
+* Occasionally discovering why something poofed
 
-Maximum-saturation colours are avoided where possible so that near-black colours do not overwhelm the selection.
-
-### Accent
-
-Accent is used for interactive UI elements such as:
-
-* Links
-* Button hover borders
-* Button hover glow
-* Focus outlines
-
-The generated accent can also be manually adjusted.
-
-### Text & Subtext
-
-The background's lightness determines whether darker or lighter colours are selected for readable text.
-
-### Border
-
-The border colour is generated by blending subtext and surface colours.
-
-### Semantic Colours
-
-Danger, success, and warning remain independent semantic colours.
-
-Their opacity-based styling allows them to blend naturally with different generated backgrounds.
+Built collaboratively, one component at a time. 💜
 
 ---
 
-## 🏗️ Workshop Architecture
+## 🌟 Philosophy
 
-WhimsyWorkshop is designed around **features rather than file types**.
+WhimsyWorkshop is meant to be useful, but also fun.
 
-Each component or tool can contain the CSS and JavaScript it needs while sharing the same underlying theme.
+Build the boring foundations properly.
 
-The current structure is evolving toward:
+Keep the design system consistent.
 
-```text id="m2q3f1"
-WhimsyWorkshop/
-│
-├── base/
-│   └── base.css
-│
-├── theme/
-│   ├── theme.css
-│   ├── builder.css
-│   ├── builder.js
-│   ├── css-generator.js
-│   ├── image-generator.js
-│   └── presets.js
-│
-└── assets/
-```
-
-The goal is for future components to build on top of the same theme rather than becoming separate mini-applications.
+Make the generated code something you'd actually want to use.
 
 ---
 
-## 🧩 Planned Workshop Components
-
-Theme Builder is only the beginning.
-
-Future Workshop tools may include:
-
-* 🔘 Button Builder
-* 📝 Input Builder
-* 🗂️ Card Builder
-* 🔔 Notice / Alert Builder
-* 🧭 Navigation Builder
-* 🪟 Modal Builder
-* 📑 Form Builder
-* 🧩 More reusable UI components
-
-Each component should be configurable within the same Workshop preview, allowing different pieces of the UI to be designed together.
-
-Eventually, the Workshop should be able to generate a complete starter UI package rather than isolated snippets.
-
-```text id="j4k7wp"
-Configure Theme
-      ↓
-Build Components
-      ↓
-Preview Together
-      ↓
-Generate CSS / JS
-      ↓
-📦 Export Project
-```
+✨ A note before entering the Workshop:
+This project is built for fun, experimentation, and learning.
+Seriousness not included. Side effects may include excessive tweaking, unnecessary excitement, and saying "hehe" when something finally works.
 
 ---
 
-## 🧪 The Testing Methodology
+## 🔗 Live Project
 
-WhimsyWorkshop is currently being tested using a highly scientific methodology:
-
-1. Upload a cute image.
-2. Admire the result.
-3. Upload something horrible.
-4. Discover what broke.
-5. Fix it.
-6. Repeat.
-
-### Current test subjects
-
-🐱 **Mimikyu** — the beautiful reference specimen.
-
-💀 **Cursed Notepad++ screenshot** — the chaos test.
-
-If the theme generator can survive both, we're probably doing something right.
+[WhimsyTheme](https://whimsytinkly.github.io/ThemeBuilder/)
 
 ---
 
-## 🛠️ Built With
+## 💜 Built With
 
 * HTML
 * CSS
 * JavaScript
-
-No backend required.
-
-No framework required.
-
-No build step.
-
-Just vibes. ✨
-
----
-
-## 🚀 Running Locally
-
-Clone the repository and open `index.html` in a browser.
-
-That's it.
-
----
-
-## 📌 Project Status
-
-**Early development**
-
-The **Theme Builder** is the first working part of WhimsyWorkshop.
-
-Current functionality includes:
-
-* Manual theme editing
-* Image-based theme generation
-* Theme normalization
-* Live preview
-* CSS generation
-* Accent-based links
-* Button interaction states
-* Preset themes
-
-The next stage is expanding the Workshop beyond themes into reusable UI component builders while keeping everything connected to the same underlying design system.
-
-More components coming soon. 🐱🎨
+* CSS Custom Properties
+* A suspicious amount of `${"`"}"` template literals
+* And ✨ whimsy ✨
