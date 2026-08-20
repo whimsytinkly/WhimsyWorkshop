@@ -210,7 +210,7 @@ That's part of the workshop. ✨
 
 ## 🤝 Co-Collaborators
 
-### Shevaun
+### WhimsyTinkly
 
 **Creator / Builder**
 
