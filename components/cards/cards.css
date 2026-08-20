@@ -34,3 +34,12 @@
   display: grid;
   gap: var(--space-sm);
 }
+
+
+[data-config="cards"] .global-checkboxes {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: var(--space-lg);
+  row-gap: var(--space-sm);
+  justify-content: start;
+}

@@ -66,24 +66,39 @@ function generateCardCSS() {
         ${getCardColorValue(
         cardSettings.main.header
     )};
+    padding: ${getCardSpacingValue(
+        cardSettings.main.headerPaddingVertical
+    )} ${getCardSpacingValue(
+        cardSettings.main.headerPaddingHorizontal
+    )};
 }
+
+.card-main .card-content {
+    padding: ${getCardSpacingValue(
+        cardSettings.main.contentPaddingVertical
+    )} ${getCardSpacingValue(
+        cardSettings.main.contentPaddingHorizontal
+    )};
+}
+
 
 .card-sub .card-header {
     background:
         ${getCardColorValue(
         cardSettings.sub.header
     )};
-}
-
-.card-main .card-content {
     padding: ${getCardSpacingValue(
-        cardSettings.main.padding
+        cardSettings.sub.headerPaddingVertical
+    )} ${getCardSpacingValue(
+        cardSettings.sub.headerPaddingHorizontal
     )};
 }
 
 .card-sub .card-content {
     padding: ${getCardSpacingValue(
-        cardSettings.sub.padding
+        cardSettings.sub.contentPaddingVertical
+    )} ${getCardSpacingValue(
+        cardSettings.sub.contentPaddingHorizontal
     )};
 }
 

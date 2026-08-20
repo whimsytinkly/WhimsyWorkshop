@@ -11,31 +11,50 @@ const cardTypeLabels = {
 const cardSettings = {
 
     main: {
-        padding: "lg",
+
+        headerPaddingVertical: "md",
+        headerPaddingHorizontal: "md",
         header: "surface",
+
+        contentPaddingVertical: "lg",
+        contentPaddingHorizontal: "lg",
+
         background: "background",
         radius: "md",
+
         borderSides: [
             "top",
             "right",
             "bottom",
             "left"
         ],
+
         shadow: "sm"
+
     },
 
+
     sub: {
-        padding: "md",
-        header: "surface",
+
+        headerPaddingVertical: "sm",
+        headerPaddingHorizontal: "md",
+        header: "background",
+
+        contentPaddingVertical: "md",
+        contentPaddingHorizontal: "md",
+
         background: "surface",
         radius: "sm",
+
         borderSides: [
             "top",
             "right",
             "bottom",
             "left"
         ],
+
         shadow: "none"
+
     }
 
 };
@@ -61,158 +80,264 @@ function generateCardConfig() {
 
         <section class="builder-section">
 
-            <div class="global-fields">
+            ${Object.entries(cardSettings)
+                .map(([type, settings], index) => `
 
-                ${Object.entries(cardSettings)
-                    .map(([type, settings]) => `
+                    <details
+                        class="global-section"
+                        ${index === 0 ? "open" : ""}
+                    >
 
-                        <div class="global-group">
+                        <summary>
+                            ${cardTypeLabels[type]}
+                        </summary>
 
+                        <!-- ========================= -->
+                        <!-- Header -->
+                        <!-- ========================= -->
+
+                            <div class="global-group">
                             <h5>
-                                ${cardTypeLabels[type]}
+                                Header
                             </h5>
 
+                                <div class="global-fields">
 
-                            <div class="global-fields">
+                                    <!-- Padding Vertical -->
 
-                                <!-- Padding -->
+                                    <div class="global-field">
 
-                                <div class="global-field">
+                                        <label
+                                            for="card-${type}-header-padding-vertical">
+                                            Padding vertical
+                                        </label>
 
-                                    <label
-                                        for="card-${type}-padding">
-                                        Padding
-                                    </label>
+                                        <select
+                                            id="card-${type}-header-padding-vertical"
+                                            data-card-type="${type}"
+                                            data-property="headerPaddingVertical">
 
-                                    <select
-                                        id="card-${type}-padding"
-                                        data-card-type="${type}"
-                                        data-property="padding">
+                                            ${generateCardSpacingOptions(
+                                                settings.headerPaddingVertical
+                                            )}
 
-                                        ${generateCardSpacingOptions(
-                                            settings.padding
-                                        )}
+                                        </select>
 
-                                    </select>
-
-                                </div>
-                                <!-- Header -->
-
-                                <div class="global-field">
-
-                                    <label
-                                        for="card-${type}-header">
-                                        Header background
-                                    </label>
-
-                                    <select
-                                        id="card-${type}-header"
-                                        data-card-type="${type}"
-                                        data-property="header">
-
-                                        ${generateCardColorOptions(
-                                            settings.header
-                                        )}
-
-                                    </select>
-
-                                </div>
-
-                                <!-- Background -->
-
-                                <div class="global-field">
-
-                                    <label
-                                        for="card-${type}-background">
-                                        Background
-                                    </label>
-
-                                    <select
-                                        id="card-${type}-background"
-                                        data-card-type="${type}"
-                                        data-property="background">
-
-                                        ${generateCardColorOptions(
-                                            settings.background
-                                        )}
-
-                                    </select>
-
-                                </div>
+                                    </div>
 
 
-                                <!-- Radius -->
+                                    <!-- Padding Horizontal -->
 
-                                <div class="global-field">
+                                    <div class="global-field">
 
-                                    <label
-                                        for="card-${type}-radius">
-                                        Radius
-                                    </label>
+                                        <label
+                                            for="card-${type}-header-padding-horizontal">
+                                            Padding horizontal
+                                        </label>
 
-                                    <select
-                                        id="card-${type}-radius"
-                                        data-card-type="${type}"
-                                        data-property="radius">
+                                        <select
+                                            id="card-${type}-header-padding-horizontal"
+                                            data-card-type="${type}"
+                                            data-property="headerPaddingHorizontal">
 
-                                        ${generateCardRadiusOptions(
-                                            settings.radius
-                                        )}
+                                            ${generateCardSpacingOptions(
+                                                settings.headerPaddingHorizontal
+                                            )}
 
-                                    </select>
+                                        </select>
+
+                                    </div>
+
+
+                                    <!-- Background -->
+
+                                    <div class="global-field">
+
+                                        <label
+                                            for="card-${type}-header">
+                                            Background
+                                        </label>
+
+                                        <select
+                                            id="card-${type}-header"
+                                            data-card-type="${type}"
+                                            data-property="header">
+
+                                            ${generateCardColorOptions(
+                                                settings.header
+                                            )}
+
+                                        </select>
+
+                                    </div>
 
                                 </div>
+                            </div>
+
+                        <!-- ========================= -->
+                        <!-- Content -->
+                        <!-- ========================= -->
+
+                            <div class="global-group">
+                            <h5>
+                                Content
+                            </h5>
+
+                                <div class="global-fields">
+
+                                    <!-- Padding Vertical -->
+
+                                    <div class="global-field">
+
+                                        <label
+                                            for="card-${type}-content-padding-vertical">
+                                            Padding vertical
+                                        </label>
+
+                                        <select
+                                            id="card-${type}-content-padding-vertical"
+                                            data-card-type="${type}"
+                                            data-property="contentPaddingVertical">
+
+                                            ${generateCardSpacingOptions(
+                                                settings.contentPaddingVertical
+                                            )}
+
+                                        </select>
+
+                                    </div>
 
 
-                                <!-- Border Sides -->
+                                    <!-- Padding Horizontal -->
 
-                                <div class="global-field">
+                                    <div class="global-field">
 
-                                    <label>
-                                        Border sides
-                                    </label>
+                                        <label
+                                            for="card-${type}-content-padding-horizontal">
+                                            Padding horizontal
+                                        </label>
 
-                                    <div class="global-checkboxes">
+                                        <select
+                                            id="card-${type}-content-padding-horizontal"
+                                            data-card-type="${type}"
+                                            data-property="contentPaddingHorizontal">
 
-                                        ${generateCardBorderSideOptions(
-                                            type,
-                                            settings.borderSides
-                                        )}
+                                            ${generateCardSpacingOptions(
+                                                settings.contentPaddingHorizontal
+                                            )}
+
+                                        </select>
 
                                     </div>
 
                                 </div>
 
-                                <!-- Shadow -->
+                            </div>
+                        <!-- ========================= -->
+                        <!-- Card -->
+                        <!-- ========================= -->
 
-                                <div class="global-field">
+                            <div class="global-group">
+                            <h5>
+                                Card
+                            </h5>
 
-                                    <label
-                                        for="card-${type}-shadow">
-                                        Shadow
-                                    </label>
 
-                                    <select
-                                        id="card-${type}-shadow"
-                                        data-card-type="${type}"
-                                        data-property="shadow">
+                                <div class="global-fields">
 
-                                        ${generateCardShadowOptions(
-                                            settings.shadow
-                                        )}
+                                    <!-- Background -->
 
-                                    </select>
+                                    <div class="global-field">
 
+                                        <label
+                                            for="card-${type}-background">
+                                            Background
+                                        </label>
+
+                                        <select
+                                            id="card-${type}-background"
+                                            data-card-type="${type}"
+                                            data-property="background">
+
+                                            ${generateCardColorOptions(
+                                                settings.background
+                                            )}
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <!-- Radius -->
+
+                                    <div class="global-field">
+
+                                        <label
+                                            for="card-${type}-radius">
+                                            Radius
+                                        </label>
+
+                                        <select
+                                            id="card-${type}-radius"
+                                            data-card-type="${type}"
+                                            data-property="radius">
+
+                                            ${generateCardRadiusOptions(
+                                                settings.radius
+                                            )}
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <!-- Border Sides -->
+
+                                    <div class="global-field">
+
+                                        <label>
+                                            Border sides
+                                        </label>
+
+                                        <div class="global-checkboxes">
+
+                                            ${generateCardBorderSideOptions(
+                                                type,
+                                                settings.borderSides
+                                            )}
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- Shadow -->
+                                        <div class="global-field">
+
+                                            <label
+                                                for="card-${type}-shadow">
+                                                Shadow
+                                            </label>
+
+                                            <select
+                                                id="card-${type}-shadow"
+                                                data-card-type="${type}"
+                                                data-property="shadow">
+
+                                                ${generateCardShadowOptions(
+                                                    settings.shadow
+                                                )}
+
+                                            </select>
+
+                                        </div>
+                                    </div>
                                 </div>
 
-                            </div>
+                    </details>
 
-                        </div>
-
-                    `)
-                    .join("")}
-
-            </div>
+                `)
+                .join("")}
 
 
             <button
@@ -235,14 +360,18 @@ function generateCardConfig() {
 // Spacing Options
 // ================================
 
-function generateCardSpacingOptions(selected) {
+function generateCardSpacingOptions(
+    selected
+) {
 
     return Object.keys(globalSettings.spacing)
         .map(size => `
 
             <option
                 value="${size}"
-                ${size === selected ? "selected" : ""}>
+                ${size === selected
+                    ? "selected"
+                    : ""}>
                 ${sizeLabels[size] || size}
             </option>
 
@@ -256,9 +385,12 @@ function generateCardSpacingOptions(selected) {
 // Colour Options
 // ================================
 
-function generateCardColorOptions(selected) {
+function generateCardColorOptions(
+    selected
+) {
 
     const options = [
+
         ["background", "Background"],
         ["surface", "Surface"],
         ["primary", "Primary"],
@@ -270,6 +402,7 @@ function generateCardColorOptions(selected) {
         ["text", "Text"],
         ["subtext", "Subtext"],
         ["border", "Border"]
+
     ];
 
 
@@ -278,7 +411,9 @@ function generateCardColorOptions(selected) {
 
             <option
                 value="${value}"
-                ${value === selected ? "selected" : ""}>
+                ${value === selected
+                    ? "selected"
+                    : ""}>
                 ${label}
             </option>
 
@@ -292,14 +427,18 @@ function generateCardColorOptions(selected) {
 // Radius Options
 // ================================
 
-function generateCardRadiusOptions(selected) {
+function generateCardRadiusOptions(
+    selected
+) {
 
     return Object.keys(globalSettings.radius)
         .map(size => `
 
             <option
                 value="${size}"
-                ${size === selected ? "selected" : ""}>
+                ${size === selected
+                    ? "selected"
+                    : ""}>
                 ${sizeLabels[size] || size}
             </option>
 
@@ -319,17 +458,20 @@ function generateCardBorderSideOptions(
 ) {
 
     const sides = [
+
         ["top", "Top"],
         ["right", "Right"],
         ["bottom", "Bottom"],
         ["left", "Left"]
+
     ];
 
 
     return sides
         .map(([value, label]) => `
 
-            <label class="global-checkbox">
+            <label
+                class="global-checkbox">
 
                 <input
                     type="checkbox"
@@ -353,13 +495,17 @@ function generateCardBorderSideOptions(
 // Shadow Options
 // ================================
 
-function generateCardShadowOptions(selected) {
+function generateCardShadowOptions(
+    selected
+) {
 
     const options = [
+
         ["none", "None"],
         ["sm", "Small"],
         ["md", "Medium"],
         ["lg", "Large"]
+
     ];
 
 
@@ -368,7 +514,9 @@ function generateCardShadowOptions(selected) {
 
             <option
                 value="${value}"
-                ${value === selected ? "selected" : ""}>
+                ${value === selected
+                    ? "selected"
+                    : ""}>
                 ${label}
             </option>
 
@@ -394,8 +542,6 @@ function bindCardEvents() {
         return;
     }
 
-
-    // Regular settings
 
     container.addEventListener(
         "change",
@@ -450,6 +596,7 @@ function bindCardEvents() {
 
 
                 return;
+
             }
 
 
