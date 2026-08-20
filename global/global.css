@@ -90,6 +90,29 @@
   line-height: 1.2;
 }
 
+.global-field input[type="checkbox"] {
+  width: auto;
+  min-height: auto;
+}
+
+.global-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.global-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  width: auto;
+  font-size: 0.9rem;
+}
+
+.global-checkbox input[type="checkbox"] {
+  width: auto;
+  min-height: auto;
+}
 
 .typography-heading {
   margin-bottom: 0;

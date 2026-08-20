@@ -15,12 +15,15 @@ function generatePreview() {
 
     const inputCSS = generateInputCSS();
 
+    const cardsCSS = generateCardCSS();
+
 
     return `
         ${globalCSS}
         ${themeCSS}
         ${buttonCSS}
         ${inputCSS}
+        ${cardsCSS}
     `;
 }
 

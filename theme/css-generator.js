@@ -46,42 +46,6 @@ a {
 }
 
 
-// Generates CSS for Cards
-function generateCardCSS() {
-    return `
-.card {
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-sm);
-}
-
-.card-header,
-.card-content {
-  padding: var(--space-lg);
-}
-
-.card-header {
-  border-bottom: 1px solid var(--color-border);
-}
-
-.card-header h3,
-.card-header p {
-  margin: 0;
-}
-
-.card-header p {
-  margin-top: var(--space-xs);
-}
-
-.card-content {
-  display: grid;
-  gap: var(--space-sm);
-}
-`;
-}
-
 // Generates CSS for Notices
 function generateNoticeCSS() {
     return `
