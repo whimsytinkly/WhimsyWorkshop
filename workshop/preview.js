@@ -17,6 +17,7 @@ function generatePreview() {
 
     const cardsCSS = generateCardCSS();
 
+    const tabsCSS = generateTabsCSS();
 
     return `
         ${globalCSS}
@@ -24,6 +25,7 @@ function generatePreview() {
         ${buttonCSS}
         ${inputCSS}
         ${cardsCSS}
+        ${tabsCSS}
     `;
 }
 

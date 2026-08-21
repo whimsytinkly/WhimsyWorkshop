@@ -117,6 +117,7 @@ const globalSettings = {
 
     // Global radius
     radius: {
+        none: "0",
         sm: "4px",
         md: "8px",
         lg: "12px"
@@ -133,6 +134,7 @@ const globalSettings = {
 };
 
 const sizeLabels = {
+    none: "None",
     xs: "Extra Small",
     sm: "Small",
     md: "Medium",

@@ -1,0 +1,94 @@
+/* ================================
+   Tabs
+   ================================ */
+
+.tabs {
+    display: flex;
+    gap: var(--space-sm);
+    border-color: var(--color-border);
+    border-style: solid;
+    border-width: 0;
+}
+
+
+/* ================================
+   Tab
+   ================================ */
+
+.tab {
+    border: 0;
+    padding: var(--space-sm) var(--space-md);
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    cursor: pointer;
+}
+
+
+/* ================================
+   Normal
+   ================================ */
+
+.tabs-normal .tab {
+    background: var(--color-surface);
+}
+
+
+.tabs-normal .tab.active {
+    background: var(--color-primary);
+    color: var(--color-primary-text);
+}
+
+
+/* ================================
+   Underline
+   ================================ */
+
+.tabs-underline .tab {
+    background: transparent;
+}
+
+
+.tabs-underline .tab.active {
+    color: var(--color-primary);
+    border-bottom:
+        2px solid var(--color-primary);
+}
+
+
+/* ================================
+   File
+   ================================ */
+
+.tabs-file .tab {
+    border:
+        1px solid var(--color-border);
+
+    border-bottom: 0;
+    border-radius:
+        var(--radius-sm) var(--radius-sm) 0 0;
+
+    background:
+        var(--color-surface);
+}
+
+
+.tabs-file .tab.active {
+    background:
+        var(--color-primary);
+
+    color:
+        var(--color-primary-text);
+}
+
+.tab-panel[hidden] {
+    display: none;
+}
+
+[data-config="tabs"] .global-checkboxes {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: var(--space-lg);
+  row-gap: var(--space-sm);
+  justify-content: start;
+}

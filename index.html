@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="components/buttons/buttons.css">
   <link rel="stylesheet" href="components/inputs/inputs.css">
   <link rel="stylesheet" href="components/cards/cards.css">
+  <link rel="stylesheet" href="components/tabs/tabs.css">
 </head>
 
 <body>
@@ -154,6 +155,18 @@
         </section>
 
 
+        <!-- Tabs Configuration -->
+        <section class="workshop-config" data-config="tabs" hidden>
+
+          <h2>Tabs</h2>
+
+          <p class="subtext">
+            Tab configuration will live here.
+          </p>
+
+        </section>
+
+
         <!-- Notice Configuration -->
         <section class="workshop-config" data-config="notices" hidden>
 
@@ -221,7 +234,6 @@
 
             <!-- Example Application Content -->
             <div class="preview-content card-content">
-
               <section>
 
                 <p class="eyebrow">
@@ -239,97 +251,159 @@
                 </p>
 
 
-                <div class="actions">
+              </section>
+              <!-- Example Tabs -->
+              <section class="preview-tabs">
 
-                  <button class="button button-primary button-medium">
-                    Primary
+                <div class="tabs" id="tab-preview" role="tablist">
+
+                  <button class="tab active" type="button" role="tab" data-tab="overview">
+                    Overview
                   </button>
 
-                  <button class="button button-secondary button-medium">
-                    Secondary
+                  <button class="tab" type="button" role="tab" data-tab="buttons">
+                    Buttons
                   </button>
 
-                  <button class="button button-danger button-medium">
-                    Danger
-                  </button>
-
-                  <button class="button button-primary button-medium" disabled>
-                    Disabled
+                  <button class="tab" type="button" role="tab" data-tab="settings">
+                    Settings
                   </button>
 
                 </div>
-                <div class="actions">
 
-                  <button class="button button-primary button-small">
-                    Small
-                  </button>
 
-                  <button class="button button-primary button-medium">
-                    Medium
-                  </button>
+                <div class="tab-content">
 
-                  <button class="button button-primary button-large">
-                    Large
-                  </button>
+                  <div class="tab-panel active" data-tab-content="overview">
+
+                    <h3>
+                      Overview
+                    </h3>
+
+                    <p class="subtext">
+                      This is the overview tab.
+                    </p>
+                    <!-- Example Card -->
+                    <section class="card card-sub">
+
+                      <div class="card-header">
+
+                        <h3>
+                          Example Card
+                        </h3>
+
+                        <p class="subtext">
+                          A sample card using shared theme values.
+                        </p>
+
+                      </div>
+
+
+                      <div class="card-content">
+
+                        <label for="example-input-small"> Small Input </label>
+                        <input id="example-input-small" class="input input-small" placeholder="Small input">
+                        <label for="example-input-medium"> Medium Input</label>
+                        <input id="example-input-medium" class="input input-medium" placeholder="Medium input">
+                        <label for="example-input-large"> Large Input </label>
+                        <input id="example-input-large" class="input input-large" placeholder="Large input">
+                        <textarea class="textarea textarea-medium" placeholder="Textarea"></textarea>
+                        <div class="notice notice-warning">
+
+                          <strong>
+                            ⚠ Warning
+                          </strong>
+
+                          <span>
+                            This is an example semantic state.
+                          </span>
+
+                        </div>
+
+
+                        <div class="notice notice-success">
+
+                          <strong>
+                            ✅ Success
+                          </strong>
+
+                          <span>
+                            This is an example semantic state.
+                          </span>
+
+                        </div>
+
+                      </div>
+
+                    </section>
+
+                  </div>
+
+
+                  <div class="tab-panel" data-tab-content="buttons" hidden>
+
+                    <h3>
+                      Buttons
+                    </h3>
+
+                    <p class="subtext">
+                      Here are some buttons!
+                    </p>
+                    <div class="actions">
+
+                      <button class="button button-primary button-medium">
+                        Primary
+                      </button>
+
+                      <button class="button button-secondary button-medium">
+                        Secondary
+                      </button>
+
+                      <button class="button button-danger button-medium">
+                        Danger
+                      </button>
+
+                      <button class="button button-primary button-medium" disabled>
+                        Disabled
+                      </button>
+
+                    </div>
+                    <div class="actions">
+
+                      <button class="button button-primary button-small">
+                        Small
+                      </button>
+
+                      <button class="button button-primary button-medium">
+                        Medium
+                      </button>
+
+                      <button class="button button-primary button-large">
+                        Large
+                      </button>
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="tab-panel" data-tab-content="settings" hidden>
+
+                    <h3>
+                      Settings
+                    </h3>
+
+                    <p class="subtext">
+                      This is where application settings could go.
+                    </p>
+
+                  </div>
 
                 </div>
 
               </section>
 
 
-              <!-- Example Card -->
-              <section class="card card-sub">
-
-                <div class="card-header">
-
-                  <h3>
-                    Example Card
-                  </h3>
-
-                  <p class="subtext">
-                    A sample card using shared theme values.
-                  </p>
-
-                </div>
-
-
-                <div class="card-content">
-
-                  <label for="example-input-small"> Small Input </label>
-                  <input id="example-input-small" class="input input-small" placeholder="Small input">
-                  <label for="example-input-medium"> Medium Input</label>
-                  <input id="example-input-medium" class="input input-medium" placeholder="Medium input">
-                  <label for="example-input-large"> Large Input </label>
-                  <input id="example-input-large" class="input input-large" placeholder="Large input">
-                  <textarea class="textarea textarea-medium" placeholder="Textarea"></textarea>
-                  <div class="notice notice-warning">
-
-                    <strong>
-                      ⚠ Warning
-                    </strong>
-
-                    <span>
-                      This is an example semantic state.
-                    </span>
-
-                  </div>
-
-
-                  <div class="notice notice-success">
-
-                    <strong>
-                      ✅ Success
-                    </strong>
-
-                    <span>
-                      This is an example semantic state.
-                    </span>
-
-                  </div>
-
-                </div>
-
-              </section>
 
             </div>
 
@@ -394,6 +468,10 @@
   <!-- Cards -->
   <script src="components/cards/cards.js"></script>
   <script src="components/cards/css-generator.js"></script>
+
+  <!-- Tabs -->
+  <script src="components/tabs/tabs.js"></script>
+  <script src="components/tabs/css-generator.js"></script>
 
   <!-- Navigation -->
   <script src="components/navigation/navigation.js"></script>

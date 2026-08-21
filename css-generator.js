@@ -142,6 +142,7 @@ function generateCSS() {
     ${generateLinkCSS()}
     ${generateInputCSS()}
     ${generateCardCSS()}
+    ${generateTabsCSS()}
     ${generateNoticeCSS()}
   `;
     document.querySelector("#generated-css").textContent = formatCSS(css);
