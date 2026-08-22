@@ -22,7 +22,7 @@ const navigationItems = [
     {
         id: "cards",
         label: "Cards",
-        icon: "🗂️"
+        icon: "📦"
     },
     {
         id: "tabs",
@@ -33,6 +33,11 @@ const navigationItems = [
         id: "notices",
         label: "Notices",
         icon: "⚠️"
+    },
+    {
+        id: "layouts",
+        label: "Layouts",
+        icon: "📏"
     }
 ];
 

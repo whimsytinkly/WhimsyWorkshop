@@ -144,6 +144,7 @@ function generateCSS() {
     ${generateCardCSS()}
     ${generateTabsCSS()}
     ${generateNoticeCSS()}
+    ${generateLayoutCSS()}
   `;
     document.querySelector("#generated-css").textContent = formatCSS(css);
 }

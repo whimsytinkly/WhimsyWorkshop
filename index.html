@@ -177,6 +177,18 @@
 
         </section>
 
+
+        <!-- Layouts Configuration -->
+        <section class="workshop-config" data-config="layouts" hidden>
+
+          <h2>Layouts</h2>
+
+          <p class="subtext">
+            Layouts configuration will live here.
+          </p>
+
+        </section>
+
       </aside>
 
 
@@ -266,6 +278,10 @@
 
                   <button class="tab" type="button" role="tab" data-tab="notices">
                     Notices
+                  </button>
+
+                  <button class="tab" type="button" role="tab" data-tab="layouts">
+                    Layouts
                   </button>
 
                 </div>
@@ -414,6 +430,31 @@
 
                   </div>
 
+                  <div class="tab-panel" data-tab-content="layouts" hidden>
+
+                    <h3>
+                      Layouts
+                    </h3>
+
+                    <p class="subtext">
+                      Here are some Layouts!
+                    </p>
+                    <div class="layout-preview-controls">
+
+                      <label for="preview-layout">
+                        Layout
+                      </label>
+
+                      <select id="preview-layout">
+                      </select>
+
+                    </div>
+
+                    <div class="layout-preview" data-layout-preview>
+                    </div>
+
+                  </div>
+
                 </div>
 
               </section>
@@ -496,6 +537,12 @@
   <script src="components/notices/notices.js"></script>
   <script src="components/notices/css-generator.js"></script>
   <script src="components/notices/js-generator.js"></script>
+
+
+  <!-- Layouts -->
+  <script src="components/layouts/layouts.js"></script>
+  <script src="components/layouts/css-generator.js"></script>
+
 
   <!-- Navigation -->
   <script src="components/navigation/navigation.js"></script>
