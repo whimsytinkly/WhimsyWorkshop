@@ -743,6 +743,15 @@ function formatJS(js) {
             /\n{3,}/g,
             "\n\n"
         )
+        // Blank line before function declarations
+        .replace(
+            /([^\n])\n(function\s+)/g,
+            "$1\n\n$2"
+        )
+        .replace(
+            /([^\n])\n(document\.)/g,
+            "$1\n\n$2"
+        )
 
         .trim();
 
@@ -1174,7 +1183,7 @@ function generateJS() {
 
     const tabsJS =
         generateTabsJS();
-        
+
     const noticesJS =
         generateNoticeJS();
 
