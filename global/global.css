@@ -145,6 +145,37 @@
 }
 
 
+.layout-item {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.layout-item:first-child {
+  border-top: 0;
+}
+
+.layout-item summary {
+  margin: 0;
+  padding: var(--space-sm) 0;
+  cursor: pointer;
+}
+
+.layout-item .global-fields {
+  padding: 0 0 var(--space-md);
+}
+
+.layout-item summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.layout-item summary button {
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
 body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);

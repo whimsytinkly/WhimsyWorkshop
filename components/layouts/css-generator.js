@@ -9,14 +9,20 @@ function generateLayoutCSS() {
 
             const className =
                 generateLayoutClassName(
-                    layout.name
+                    layout
                 );
 
 
-            const spacing =
-                layoutSettings.defaultSpacing === "none"
-                    ? "0"
-                    : `var(--space-${layoutSettings.defaultSpacing})`;
+            const horizontalSpacing =
+                resolveLayoutSpacing(
+                    layout.spacingHorizontal
+                );
+
+
+            const verticalSpacing =
+                resolveLayoutSpacing(
+                    layout.spacingVertical
+                );
 
 
             // =========================
@@ -32,7 +38,8 @@ function generateLayoutCSS() {
 .${className} {
     display: flex;
     flex-wrap: wrap;
-    gap: ${spacing};
+    column-gap: ${horizontalSpacing};
+    row-gap: ${verticalSpacing};
 }
 
 `;
@@ -57,12 +64,41 @@ function generateLayoutCSS() {
 .${className} {
     display: grid;
     grid-template-columns: ${columns};
-    gap: ${spacing};
+    column-gap: ${horizontalSpacing};
+    row-gap: ${verticalSpacing};
 }
 
 `;
 
         })
         .join("");
+
+}
+
+
+// ================================
+// Resolve Layout Spacing
+// ================================
+
+function resolveLayoutSpacing(
+    spacing
+) {
+
+    const value =
+        spacing === "default"
+            ? layoutSettings.defaultSpacing
+            : spacing;
+
+
+    if (
+        value === "none"
+    ) {
+
+        return "0";
+
+    }
+
+
+    return `var(--space-${value})`;
 
 }
