@@ -264,8 +264,8 @@
                     Buttons
                   </button>
 
-                  <button class="tab" type="button" role="tab" data-tab="settings">
-                    Settings
+                  <button class="tab" type="button" role="tab" data-tab="notices">
+                    Notices
                   </button>
 
                 </div>
@@ -307,30 +307,7 @@
                         <label for="example-input-large"> Large Input </label>
                         <input id="example-input-large" class="input input-large" placeholder="Large input">
                         <textarea class="textarea textarea-medium" placeholder="Textarea"></textarea>
-                        <div class="notice notice-warning">
 
-                          <strong>
-                            ⚠ Warning
-                          </strong>
-
-                          <span>
-                            This is an example semantic state.
-                          </span>
-
-                        </div>
-
-
-                        <div class="notice notice-success">
-
-                          <strong>
-                            ✅ Success
-                          </strong>
-
-                          <span>
-                            This is an example semantic state.
-                          </span>
-
-                        </div>
 
                       </div>
 
@@ -386,15 +363,54 @@
                   </div>
 
 
-                  <div class="tab-panel" data-tab-content="settings" hidden>
+                  <div class="tab-panel" data-tab-content="notices" hidden>
 
                     <h3>
-                      Settings
+                      Notices
                     </h3>
 
                     <p class="subtext">
-                      This is where application settings could go.
+                      Notices and toast!
                     </p>
+                    <div class="notice notice-warning">
+
+                      <strong>
+                        ⚠ Warning
+                      </strong>
+
+                      <span>
+                        This is an example semantic state.
+                      </span>
+
+                    </div>
+
+
+                    <div class="notice notice-success">
+
+                      <strong>
+                        ✅ Success
+                      </strong>
+
+                      <span>
+                        This is an example semantic state.
+                      </span>
+
+                    </div>
+
+                    <!-- ================================ -->
+                    <!-- Toast Preview -->
+                    <!-- ================================ -->
+
+                    <div class="toast-preview" data-toast-preview>
+
+                      <button class="button button-primary button-medium" data-toast-trigger>
+                        Show Toast
+                      </button>
+                      <div class="toast-container" data-toast-container>
+                      </div>
+
+                    </div>
+
 
                   </div>
 
@@ -438,7 +454,7 @@
             <pre><code id="generated-js"></code></pre>
           </div>
         </div>
-        
+
       </section>
     </main>
 
@@ -475,6 +491,11 @@
   <script src="components/tabs/tabs.js"></script>
   <script src="components/tabs/css-generator.js"></script>
   <script src="components/tabs/js-generator.js"></script>
+
+  <!-- Notices -->
+  <script src="components/notices/notices.js"></script>
+  <script src="components/notices/css-generator.js"></script>
+  <script src="components/notices/js-generator.js"></script>
 
   <!-- Navigation -->
   <script src="components/navigation/navigation.js"></script>

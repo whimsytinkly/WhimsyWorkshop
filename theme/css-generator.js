@@ -44,20 +44,3 @@ a {
 }
 `;
 }
-
-
-// Generates CSS for Notices
-function generateNoticeCSS() {
-    return `
-.notice {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-  padding: var(--space-md);
-  border: 1px solid color-mix(in srgb, var(--color-warning) 45%, var(--color-border));
-  border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--color-warning) 12%, var(--color-surface));
-}
-`;
-}
-

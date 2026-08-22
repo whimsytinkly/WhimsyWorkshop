@@ -1174,10 +1174,14 @@ function generateJS() {
 
     const tabsJS =
         generateTabsJS();
+        
+    const noticesJS =
+        generateNoticeJS();
 
 
     js = `
         ${tabsJS}
+        ${noticesJS}
     `.trim();
 
     document.querySelector("#generated-js").textContent = formatJS(js);
