@@ -329,7 +329,13 @@ document
 
         const isPreview =
           button.dataset.view === "preview";
+        
+          
+        const isCSS =
+          button.dataset.view === "css";
 
+        const isJS =
+          button.dataset.view === "js";
 
         document
           .querySelector("#preview-view")
@@ -342,9 +348,17 @@ document
         document
           .querySelector("#css-view")
           .style.display =
-          isPreview
-            ? "none"
-            : "block";
+          isCSS
+            ? "block"
+            : "none";
+
+        
+        document
+          .querySelector("#js-view")
+          .style.display =
+          isJS
+            ? "block"
+            : "none";
 
 
         document
@@ -410,6 +424,51 @@ document
     }
   );
 
+
+  
+// ================================
+// Copy Generated CSS
+// ================================
+
+document
+  .querySelector("#copy-js")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const js =
+        document
+          .querySelector("#generated-js")
+          .textContent;
+
+
+      await navigator
+        .clipboard
+        .writeText(js);
+
+
+      const button =
+        document.querySelector(
+          "#copy-js"
+        );
+
+
+      button.textContent =
+        "Copied!";
+
+
+      setTimeout(
+        () => {
+
+          button.textContent =
+            "Copy";
+
+        },
+        1500
+      );
+
+    }
+  );
 
 // ================================
 // Preset Themes

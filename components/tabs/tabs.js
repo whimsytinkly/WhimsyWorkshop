@@ -611,29 +611,22 @@ function initTabsBuilder() {
 // ================================
 // Preview Tab Switching
 // ================================
+function initTabs(container) {
 
-function initTabPreview() {
-
-    const appPreview =
-        document.querySelector(
-            "#app-preview"
-        );
-
-
-    if (!appPreview) {
+    if (!container) {
         return;
     }
 
 
     const tabs =
-        appPreview.querySelectorAll(
-            "#tab-preview .tab"
+        container.querySelectorAll(
+            ".tabs .tab"
         );
 
 
     const panels =
-        appPreview.querySelectorAll(
-            ".tab-panel"
+        container.querySelectorAll(
+            "[data-tab-content]"
         );
 
 
@@ -714,4 +707,10 @@ function initTabPreview() {
 
 initTabsBuilder();
 
-initTabPreview();
+document
+    .querySelectorAll("[data-tabs]")
+    .forEach(container => {
+
+        initTabs(container);
+
+    });
