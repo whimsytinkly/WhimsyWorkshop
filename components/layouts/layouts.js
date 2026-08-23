@@ -6,6 +6,23 @@ const layoutSettings = {
 
     defaultSpacing: "md",
 
+    // ================================
+    // Site Layout
+    // ================================
+
+    siteLayout: {
+
+        header: true,
+
+        sidebar: true
+
+    },
+
+
+    // ================================
+    // Content Layouts
+    // ================================
+
     layouts: [
 
         {
@@ -129,6 +146,67 @@ function generateLayoutConfig() {
 
 
             <!-- ========================= -->
+            <!-- Site Layout -->
+            <!-- ========================= -->
+
+            <div class="global-group">
+
+                <h5>
+                    Site Layout
+                </h5>
+
+
+                <div class="global-fields">
+
+
+                    <!-- Header -->
+
+                    <div class="global-field">
+
+                        <label
+                            for="site-layout-header">
+                            Header
+                        </label>
+
+
+                        <input
+                            id="site-layout-header"
+                            type="checkbox"
+                            data-site-layout-property="header"
+                            ${layoutSettings.siteLayout.header
+            ? "checked"
+            : ""}>
+
+                    </div>
+
+
+                    <!-- Sidebar -->
+
+                    <div class="global-field">
+
+                        <label
+                            for="site-layout-sidebar">
+                            Sidebar
+                        </label>
+
+
+                        <input
+                            id="site-layout-sidebar"
+                            type="checkbox"
+                            data-site-layout-property="sidebar"
+                            ${layoutSettings.siteLayout.sidebar
+            ? "checked"
+            : ""}>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
             <!-- Built-in Layouts -->
             <!-- ========================= -->
 
@@ -152,95 +230,91 @@ function generateLayoutConfig() {
 
                     return `
 
-                                    <div class="layout-item">
+                        <div class="layout-item">
 
-                                        <details>
+                            <details>
 
-                                            <summary>
-                                                ${layout.name}
-                                            </summary>
-
-
-                                            <div class="global-fields">
-
-                                                <!-- ========================= -->
-                                                <!-- Type -->
-                                                <!-- ========================= -->
-
-                                                <div class="global-field">
-
-                                                    <label>
-                                                        Type
-                                                    </label>
+                                <summary>
+                                    ${layout.name}
+                                </summary>
 
 
-                                                    <span>
-                                                        ${getLayoutTypeLabel(
+                                <div class="global-fields">
+
+
+                                    <!-- Type -->
+
+                                    <div class="global-field">
+
+                                        <label>
+                                            Type
+                                        </label>
+
+
+                                        <span>
+                                            ${getLayoutTypeLabel(
                         layout
                     )}
-                                                    </span>
-
-                                                </div>
-
-
-                                                <!-- ========================= -->
-                                                <!-- Horizontal Spacing -->
-                                                <!-- ========================= -->
-
-                                                <div class="global-field">
-
-                                                    <label
-                                                        for="layout-${index}-spacing-horizontal">
-                                                        Horizontal
-                                                    </label>
-
-
-                                                    <select
-                                                        id="layout-${index}-spacing-horizontal"
-                                                        data-layout-index="${index}"
-                                                        data-layout-property="spacingHorizontal">
-
-                                                        ${generateLayoutSpacingOptions(
-                        layout.spacingHorizontal
-                    )}
-
-                                                    </select>
-
-                                                </div>
-
-
-                                                <!-- ========================= -->
-                                                <!-- Vertical Spacing -->
-                                                <!-- ========================= -->
-
-                                                <div class="global-field">
-
-                                                    <label
-                                                        for="layout-${index}-spacing-vertical">
-                                                        Vertical
-                                                    </label>
-
-
-                                                    <select
-                                                        id="layout-${index}-spacing-vertical"
-                                                        data-layout-index="${index}"
-                                                        data-layout-property="spacingVertical">
-
-                                                        ${generateLayoutSpacingOptions(
-                        layout.spacingVertical
-                    )}
-
-                                                    </select>
-
-                                                </div>
-
-                                            </div>
-
-                                        </details>
+                                        </span>
 
                                     </div>
 
-                                `;
+
+                                    <!-- Horizontal -->
+
+                                    <div class="global-field">
+
+                                        <label
+                                            for="layout-${index}-spacing-horizontal">
+                                            Horizontal
+                                        </label>
+
+
+                                        <select
+                                            id="layout-${index}-spacing-horizontal"
+                                            data-layout-index="${index}"
+                                            data-layout-property="spacingHorizontal">
+
+                                            ${generateLayoutSpacingOptions(
+                        layout.spacingHorizontal
+                    )}
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <!-- Vertical -->
+
+                                    <div class="global-field">
+
+                                        <label
+                                            for="layout-${index}-spacing-vertical">
+                                            Vertical
+                                        </label>
+
+
+                                        <select
+                                            id="layout-${index}-spacing-vertical"
+                                            data-layout-index="${index}"
+                                            data-layout-property="spacingVertical">
+
+                                            ${generateLayoutSpacingOptions(
+                        layout.spacingVertical
+                    )}
+
+                                        </select>
+
+                                    </div>
+
+
+                                </div>
+
+                            </details>
+
+                        </div>
+
+                    `;
 
                 }
             )
@@ -258,16 +332,16 @@ function generateLayoutConfig() {
             ${customLayouts.length
             ? `
 
-                    <div class="global-group">
+                <div class="global-group">
 
-                        <details open>
+                    <details open>
 
-                            <summary>
-                                Custom Layouts
-                            </summary>
+                        <summary>
+                            Custom Layouts
+                        </summary>
 
 
-                            ${layoutSettings.layouts
+                        ${layoutSettings.layouts
                 .map(
                     (layout, index) => {
 
@@ -278,224 +352,236 @@ function generateLayoutConfig() {
 
                         return `
 
-                                            <div class="layout-item">
+                            <div class="layout-item">
 
-                                                <details open>
+                                <details open>
 
-                                                    <summary>
-                                                            <span>
-                                                                ${layout.name}
-                                                            </span>
+                                    <summary>
 
-                                                            <button
-                                                                type="button"
-                                                                class="button button-danger button-small"
-                                                                data-delete-layout="${index}"
-                                                                title="Delete layout"
-                                                                aria-label="Delete layout">
-                                                                🗑
-                                                            </button>
-                                                    </summary>
+                                        <span>
+                                            ${layout.name}
+                                        </span>
 
 
-                                                    <div class="global-fields">
+                                        <button
+                                            type="button"
+                                            class="button button-danger button-small"
+                                            data-delete-layout="${index}"
+                                            title="Delete layout"
+                                            aria-label="Delete layout">
+                                            🗑
+                                        </button>
 
-                                                        <!-- ========================= -->
-                                                        <!-- Name -->
-                                                        <!-- ========================= -->
-
-                                                        <div class="global-field">
-
-                                                            <label
-                                                                for="layout-${index}-name">
-                                                                Name
-                                                            </label>
+                                    </summary>
 
 
-                                                            <input
-                                                                id="layout-${index}-name"
-                                                                type="text"
-                                                                value="${layout.name}"
-                                                                data-layout-index="${index}"
-                                                                data-layout-property="name">
-
-                                                        </div>
+                                    <div class="global-fields">
 
 
-                                                        <!-- ========================= -->
-                                                        <!-- Type -->
-                                                        <!-- ========================= -->
+                                        <!-- ========================= -->
+                                        <!-- Name -->
+                                        <!-- ========================= -->
 
-                                                        <div class="global-field">
+                                        <div class="global-field">
 
-                                                            <label>
-                                                                Type
-                                                            </label>
+                                            <label
+                                                for="layout-${index}-name">
+                                                Name
+                                            </label>
 
 
-                                                            <span>
-                                                                ${getLayoutTypeLabel(
+                                            <input
+                                                id="layout-${index}-name"
+                                                type="text"
+                                                value="${layout.name}"
+                                                data-layout-index="${index}"
+                                                data-layout-property="name">
+
+                                        </div>
+
+
+                                        <!-- ========================= -->
+                                        <!-- Type -->
+                                        <!-- ========================= -->
+
+                                        <div class="global-field">
+
+                                            <label>
+                                                Type
+                                            </label>
+
+
+                                            <span>
+                                                ${getLayoutTypeLabel(
                             layout
                         )}
-                                                            </span>
+                                            </span>
 
-                                                        </div>
-
-
-                                                        <!-- ========================= -->
-                                                        <!-- Horizontal Spacing -->
-                                                        <!-- ========================= -->
-
-                                                        <div class="global-field">
-
-                                                            <label
-                                                                for="layout-${index}-spacing-horizontal">
-                                                                Horizontal
-                                                            </label>
+                                        </div>
 
 
-                                                            <select
-                                                                id="layout-${index}-spacing-horizontal"
-                                                                data-layout-index="${index}"
-                                                                data-layout-property="spacingHorizontal">
+                                        <!-- ========================= -->
+                                        <!-- Horizontal -->
+                                        <!-- ========================= -->
 
-                                                                ${generateLayoutSpacingOptions(
+                                        <div class="global-field">
+
+                                            <label
+                                                for="layout-${index}-spacing-horizontal">
+                                                Horizontal
+                                            </label>
+
+
+                                            <select
+                                                id="layout-${index}-spacing-horizontal"
+                                                data-layout-index="${index}"
+                                                data-layout-property="spacingHorizontal">
+
+                                                ${generateLayoutSpacingOptions(
                             layout.spacingHorizontal
                         )}
 
-                                                            </select>
+                                            </select>
 
-                                                        </div>
-
-
-                                                        <!-- ========================= -->
-                                                        <!-- Vertical Spacing -->
-                                                        <!-- ========================= -->
-
-                                                        <div class="global-field">
-
-                                                            <label
-                                                                for="layout-${index}-spacing-vertical">
-                                                                Vertical
-                                                            </label>
+                                        </div>
 
 
-                                                            <select
-                                                                id="layout-${index}-spacing-vertical"
-                                                                data-layout-index="${index}"
-                                                                data-layout-property="spacingVertical">
+                                        <!-- ========================= -->
+                                        <!-- Vertical -->
+                                        <!-- ========================= -->
 
-                                                                ${generateLayoutSpacingOptions(
+                                        <div class="global-field">
+
+                                            <label
+                                                for="layout-${index}-spacing-vertical">
+                                                Vertical
+                                            </label>
+
+
+                                            <select
+                                                id="layout-${index}-spacing-vertical"
+                                                data-layout-index="${index}"
+                                                data-layout-property="spacingVertical">
+
+                                                ${generateLayoutSpacingOptions(
                             layout.spacingVertical
                         )}
 
-                                                            </select>
+                                            </select>
 
-                                                        </div>
+                                        </div>
 
 
-                                                        <!-- ========================= -->
-                                                        <!-- Columns -->
-                                                        <!-- ========================= -->
+                                        <!-- ========================= -->
+                                        <!-- Columns -->
+                                        <!-- ========================= -->
 
-                                                        ${layout.type === "columns"
+                                        ${layout.type === "columns"
                                 ? `
 
-                                                                <div class="global-group">
+                                            <div class="global-group">
 
-                                                                    <h5>
-                                                                        Columns
-                                                                    </h5>
+                                                <h5>
+                                                    Columns
+                                                </h5>
 
 
-                                                                    <div class="global-fields">
+                                                <div class="global-fields">
 
-                                                                        ${layout.columns
+                                                    ${layout.columns
                                     .map(
                                         (
                                             column,
                                             columnIndex
                                         ) => `
 
-                                                                                    <div class="global-field">
+                                                        <div class="global-field">
 
-                                                                                        <label
-                                                                                            for="layout-${index}-column-${columnIndex}">
-                                                                                            Column ${columnIndex + 1
-                                            }
-                                                                                        </label>
+                                                            <label
+                                                                for="layout-${index}-column-${columnIndex}">
+                                                                Column ${columnIndex + 1}
+                                                            </label>
 
 
-                                                                                        <div class="global-input-with-suffix">
+                                                            <div class="global-input-with-suffix">
 
-                                                                                            <input
-                                                                                                id="layout-${index}-column-${columnIndex}"
-                                                                                                type="number"
-                                                                                                min="1"
-                                                                                                max="100"
-                                                                                                step="1"
-                                                                                                value="${column}"
-                                                                                                data-layout-index="${index}"
-                                                                                                data-column-index="${columnIndex}"
-                                                                                                data-layout-property="column">
+                                                                <input
+                                                                    id="layout-${index}-column-${columnIndex}"
+                                                                    type="number"
+                                                                    min="1"
+                                                                    max="100"
+                                                                    step="1"
+                                                                    value="${column}"
+                                                                    placeholder="Auto"
+                                                                    data-layout-index="${index}"
+                                                                    data-column-index="${columnIndex}"
+                                                                    data-layout-property="column">
 
-                                                                                            <span>
-                                                                                                %
-                                                                                            </span>
-                                                                                            ${layout.columns.length > 1
+
+                                                                <span>
+                                                                    %
+                                                                </span>
+
+
+                                                                ${layout.columns.length > 1
                                                 ? `
-                                                                                                    <button
-                                                                                                        type="button"
-                                                                                                        class="button button-danger button-small"
-                                                                                                        data-delete-column="${index}"
-                                                                                                        data-column-index="${columnIndex}">
-                                                                                                        🗑
-                                                                                                    </button>
-                                                                                                `
-                                                : ""
-                                            }
-
-                                                                                        </div>
-
-                                                                                    </div>
-
-                                                                                `
-                                    )
-                                    .join("")}
-
-                                                                    </div>
-
 
                                                                     <button
                                                                         type="button"
-                                                                        class="button button-secondary button-small"
-                                                                        data-add-column="${index}">
-                                                                        Add Column
+                                                                        class="button button-danger button-small"
+                                                                        data-delete-column="${index}"
+                                                                        data-column-index="${columnIndex}"
+                                                                        title="Delete column"
+                                                                        aria-label="Delete column">
+                                                                        🗑
                                                                     </button>
 
-                                                                </div>
+                                                                `
+                                                : ""
+                                            }
 
-                                                            `
-                                : ""
-                            }
+                                                            </div>
 
-                                                    </div>
+                                                        </div>
 
-                                                </details>
+                                                    `
+                                    )
+                                    .join("")}
+
+                                                </div>
+
+
+                                                <button
+                                                    type="button"
+                                                    class="button button-secondary button-small"
+                                                    data-add-column="${index}">
+                                                    Add Column
+                                                </button>
 
                                             </div>
 
-                                        `;
+                                        `
+                                : ""
+                            }
+
+
+                                    </div>
+
+                                </details>
+
+                            </div>
+
+                        `;
 
                     }
                 )
                 .join("")}
 
-                        </details>
+                    </details>
 
-                    </div>
+                </div>
 
-                `
+            `
             : ""
         }
 
@@ -536,8 +622,12 @@ function getLayoutTypeLabel(
     layout
 ) {
 
-    if (layout.type === "inline") {
+    if (
+        layout.type === "inline"
+    ) {
+
         return "Inline";
+
     }
 
 
@@ -545,10 +635,11 @@ function getLayoutTypeLabel(
         layout.columns.length;
 
 
-    return `${columnCount} ${columnCount === 1
-        ? "Column"
-        : "Columns"
-        }`;
+    return `${columnCount} ${
+        columnCount === 1
+            ? "Column"
+            : "Columns"
+    }`;
 
 }
 
@@ -657,7 +748,7 @@ function renderLayoutPreview() {
 
     const layout =
         layoutSettings.layouts[
-        Number(select.value)
+            Number(select.value)
         ];
 
 
@@ -736,7 +827,7 @@ function bindLayoutEvents() {
 
 
     // ================================
-    // Global / Layout Changes
+    // Layout / Site Layout Changes
     // ================================
 
     container.addEventListener(
@@ -755,6 +846,32 @@ function bindLayoutEvents() {
                 target.dataset.layoutIndex;
 
 
+            // =========================
+            // Site Layout
+            // =========================
+
+            const siteProperty =
+                target.dataset.siteLayoutProperty;
+
+
+            if (
+                siteProperty
+            ) {
+
+                layoutSettings.siteLayout[
+                    siteProperty
+                ] =
+                    target.checked;
+
+                return;
+
+            }
+
+
+            // =========================
+            // Default Spacing
+            // =========================
+
             if (
                 property === "defaultSpacing"
             ) {
@@ -766,6 +883,10 @@ function bindLayoutEvents() {
 
             }
 
+
+            // =========================
+            // Individual Layout
+            // =========================
 
             if (
                 index === undefined ||
@@ -781,7 +902,7 @@ function bindLayoutEvents() {
 
             const layout =
                 layoutSettings.layouts[
-                layoutIndex
+                    layoutIndex
                 ];
 
 
@@ -790,7 +911,9 @@ function bindLayoutEvents() {
             }
 
 
-            // Layout name
+            // =========================
+            // Layout Name
+            // =========================
 
             if (
                 property === "name"
@@ -806,7 +929,9 @@ function bindLayoutEvents() {
             }
 
 
-            // Column percentage
+            // =========================
+            // Column Percentage
+            // =========================
 
             if (
                 property === "column"
@@ -818,10 +943,27 @@ function bindLayoutEvents() {
                     );
 
 
+                const rawValue =
+                    target.value;
+
+
+                // Blank = Auto
+
+                if (
+                    rawValue === ""
+                ) {
+
+                    layout.columns[
+                        columnIndex
+                    ] = "";
+
+                    return;
+
+                }
+
+
                 const value =
-                    Number(
-                        target.value
-                    );
+                    Number(rawValue);
 
 
                 if (
@@ -846,6 +988,10 @@ function bindLayoutEvents() {
             }
 
 
+            // =========================
+            // Other Layout Properties
+            // =========================
+
             layout[property] =
                 target.value;
 
@@ -866,7 +1012,11 @@ function bindLayoutEvents() {
 
                 button.addEventListener(
                     "click",
-                    () => {
+                    event => {
+
+                        event.preventDefault();
+                        event.stopPropagation();
+
 
                         const index =
                             Number(
@@ -876,7 +1026,7 @@ function bindLayoutEvents() {
 
                         const layout =
                             layoutSettings.layouts[
-                            index
+                                index
                             ];
 
 
@@ -920,7 +1070,10 @@ function bindLayoutEvents() {
 
                 button.addEventListener(
                     "click",
-                    () => {
+                    event => {
+
+                        event.preventDefault();
+
 
                         const index =
                             Number(
@@ -930,7 +1083,7 @@ function bindLayoutEvents() {
 
                         const layout =
                             layoutSettings.layouts[
-                            index
+                                index
                             ];
 
 
@@ -942,8 +1095,10 @@ function bindLayoutEvents() {
                         }
 
 
+                        // New column = Auto
+
                         layout.columns.push(
-                            0
+                            ""
                         );
 
 
@@ -966,13 +1121,9 @@ function bindLayoutEvents() {
         )
         ?.addEventListener(
             "click",
-            () => {
+            event => {
 
-                const customLayoutCount =
-                    layoutSettings.layouts.filter(
-                        layout =>
-                            !layout.builtIn
-                    ).length;
+                event.preventDefault();
 
 
                 const layoutNumber =
@@ -990,8 +1141,10 @@ function bindLayoutEvents() {
                     type:
                         "columns",
 
+                    // New layout starts as Auto
+
                     columns:
-                        [100],
+                        [""],
 
                     spacingHorizontal:
                         "default",
@@ -1008,6 +1161,7 @@ function bindLayoutEvents() {
                 generateLayoutConfig();
 
                 generateLayoutPreviewOptions();
+
 
                 const select =
                     document.querySelector(
@@ -1030,8 +1184,9 @@ function bindLayoutEvents() {
 
 
     // ================================
-    // Delete column
+    // Delete Column
     // ================================
+
     container
         .querySelectorAll(
             "[data-delete-column]"
@@ -1041,12 +1196,16 @@ function bindLayoutEvents() {
 
                 button.addEventListener(
                     "click",
-                    () => {
+                    event => {
+
+                        event.preventDefault();
+
 
                         const layoutIndex =
                             Number(
                                 button.dataset.deleteColumn
                             );
+
 
                         const columnIndex =
                             Number(
@@ -1056,7 +1215,7 @@ function bindLayoutEvents() {
 
                         const layout =
                             layoutSettings.layouts[
-                            layoutIndex
+                                layoutIndex
                             ];
 
 

@@ -1,5 +1,23 @@
 // Preview
+// ================================
+// Layout Preview
+// ================================
+function applySiteLayoutPreview() {
 
+    const header =
+        document.querySelector(
+            "#workshop-header"
+        );
+
+    if (!header) {
+        return;
+    }
+
+    console.log(!layoutSettings.siteLayout.header);
+    header.hidden =
+        !layoutSettings.siteLayout.header;
+
+}
 
 // ================================
 // Generate Preview CSS
@@ -70,7 +88,7 @@ function applyPreview() {
             ${css}
         }
     `;
-
+    applySiteLayoutPreview();
     generateCSS();
     generateJS();
 

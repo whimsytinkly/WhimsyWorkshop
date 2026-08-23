@@ -52,11 +52,9 @@ function generateLayoutCSS() {
             // =========================
 
             const columns =
-                layout.columns
-                    .map(
-                        value => `${value}%`
-                    )
-                    .join(" ");
+                calculateLayoutColumns(
+                    layout.columns
+                );
 
 
             return `
@@ -72,6 +70,142 @@ function generateLayoutCSS() {
 
         })
         .join("");
+
+}
+
+
+// ================================
+// Calculate Layout Columns
+// ================================
+
+function calculateLayoutColumns(
+    columns
+) {
+
+    if (
+        !columns ||
+        !columns.length
+    ) {
+
+        return "1fr";
+
+    }
+
+
+    // ================================
+    // Identify Auto Columns
+    // ================================
+
+    const isAuto =
+        value =>
+            value === "" ||
+            value === null ||
+            value === undefined ||
+            value === "auto" ||
+            value === "Auto" ||
+            value === 0 ||
+            value === "0";
+
+
+    // ================================
+    // Calculate Explicit Total
+    // ================================
+
+    const explicitTotal =
+        columns.reduce(
+            (
+                total,
+                value
+            ) => {
+
+                if (
+                    isAuto(value)
+                ) {
+                    return total;
+                }
+
+
+                const number =
+                    Number(value);
+
+
+                if (
+                    Number.isFinite(number) &&
+                    number > 0
+                ) {
+
+                    return total + number;
+
+                }
+
+
+                return total;
+
+            },
+            0
+        );
+
+
+    // ================================
+    // Count Auto Columns
+    // ================================
+
+    const autoCount =
+        columns.filter(
+            isAuto
+        ).length;
+
+
+    // ================================
+    // Calculate Remaining Percentage
+    // ================================
+
+    const remaining =
+        Math.max(
+            0,
+            100 - explicitTotal
+        );
+
+
+    const autoPercentage =
+        autoCount > 0
+            ? remaining / autoCount
+            : 0;
+
+
+    // ================================
+    // Generate CSS Values
+    // ================================
+
+    return columns
+        .map(value => {
+
+            if (
+                isAuto(value)
+            ) {
+
+                return `${autoPercentage}%`;
+
+            }
+
+
+            const number =
+                Number(value);
+
+
+            if (
+                Number.isFinite(number)
+            ) {
+
+                return `${number}%`;
+
+            }
+
+
+            return "0%";
+
+        })
+        .join(" ");
 
 }
 

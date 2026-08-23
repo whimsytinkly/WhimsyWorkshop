@@ -178,3 +178,16 @@
     padding: var(--space-xl);
     overflow: auto;
 }
+
+#workshop-header[hidden] {
+    display: none;
+}
+
+#workshop-header[hidden] ~ .workshop-layout #workshop-nav {
+    top: 0;
+}
+
+#workshop-header[hidden] ~ .workshop-layout .workshop-workspace {
+    min-height: 100vh;
+    margin-top: 0;
+}
