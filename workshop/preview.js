@@ -9,13 +9,59 @@ function applySiteLayoutPreview() {
             "#workshop-header"
         );
 
-    if (!header) {
+    const sidebar =
+        document.querySelector(
+            "#workshop-nav"
+        );
+
+    const layout =
+        document.querySelector(
+            ".workshop-layout"
+        );
+
+
+    if (!layout) {
         return;
     }
 
-    console.log(!layoutSettings.siteLayout.header);
-    header.hidden =
-        !layoutSettings.siteLayout.header;
+
+    // ================================
+    // Header
+    // ================================
+
+    if (header) {
+
+        header.hidden =
+            !layoutSettings.siteLayout.header;
+
+    }
+
+
+    // ================================
+    // Sidebar
+    // ================================
+
+    if (sidebar) {
+
+        sidebar.hidden =
+            !layoutSettings.siteLayout.sidebar;
+
+    }
+
+
+    // ================================
+    // Layout State
+    // ================================
+
+    layout.classList.toggle(
+        "site-header-hidden",
+        !layoutSettings.siteLayout.header
+    );
+
+    layout.classList.toggle(
+        "site-sidebar-hidden",
+        !layoutSettings.siteLayout.sidebar
+    );
 
 }
 
@@ -89,6 +135,7 @@ function applyPreview() {
         }
     `;
     applySiteLayoutPreview();
+    renderNavigation();
     generateCSS();
     generateJS();
 

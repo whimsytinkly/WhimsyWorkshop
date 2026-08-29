@@ -478,3 +478,44 @@ a {
 
     color: var(--color-subtext);
 }
+
+/* ================================
+   Site Layout States
+   ================================ */
+
+.workshop-layout.site-sidebar-hidden
+.workshop-workspace {
+    margin-left: 0;
+}
+
+
+.workshop-layout.site-header-hidden
+.workshop-workspace {
+    margin-top: 0;
+    min-height: 100vh;
+}
+
+/* ================================
+   Header Navigation
+   ================================ */
+
+#workshop-header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-left: var(--space-xl);
+}
+
+#workshop-header-nav .workshop-nav-button {
+    width: auto;
+    min-height: 36px;
+    padding: 8px 10px;
+}
+
+#workshop-header-nav .workshop-nav-label {
+    opacity: 1;
+}
+
+#workshop-header-nav .workshop-nav-icon {
+    display: none;
+}
