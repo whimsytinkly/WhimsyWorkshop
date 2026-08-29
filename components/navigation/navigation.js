@@ -40,6 +40,11 @@ const navigationItems = [
         icon: "⚠️"
     },
     {
+        id: "tables",
+        label: "Tables",
+        icon: "🧮"
+    },
+    {
         id: "layouts",
         label: "Layouts",
         icon: "📏"

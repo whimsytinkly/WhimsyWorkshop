@@ -83,6 +83,8 @@ function generatePreview() {
 
     const tabsCSS = generateTabsCSS();
 
+    const tablesCSS = generateTablesCSS();
+
     const noticesCSS = generateNoticeCSS();
 
     const layoutsCSS = generateLayoutCSS();
@@ -94,6 +96,7 @@ function generatePreview() {
         ${inputCSS}
         ${cardsCSS}
         ${tabsCSS}
+        ${tablesCSS}
         ${noticesCSS}
         ${layoutsCSS}
     `;
@@ -136,6 +139,7 @@ function applyPreview() {
     `;
     applySiteLayoutPreview();
     renderNavigation();
+    renderTablePreview();
     generateCSS();
     generateJS();
 

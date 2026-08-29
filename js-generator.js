@@ -1187,10 +1187,13 @@ function generateJS() {
     const noticesJS =
         generateNoticeJS();
 
+    const tablesJS =
+        generateTablesJS();
 
     js = `
         ${tabsJS}
         ${noticesJS}
+        ${tablesJS}
     `.trim();
 
     document.querySelector("#generated-js").textContent = formatJS(js);

@@ -1,0 +1,30 @@
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-surface);
+}
+
+.table th,
+.table td {
+    text-align: left;
+    vertical-align: middle;
+    padding: var(--space-sm);
+    color: var(--color-text);
+}
+
+.table th {
+    font-weight: 700;
+}
+
+.table tbody tr {
+    transition: background-color 120ms ease;
+}
+
+[hidden] {
+    display: none !important;
+}

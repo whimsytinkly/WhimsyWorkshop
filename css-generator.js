@@ -143,6 +143,7 @@ function generateCSS() {
     ${generateInputCSS()}
     ${generateCardCSS()}
     ${generateTabsCSS()}
+    ${generateTablesCSS()}
     ${generateNoticeCSS()}
     ${generateLayoutCSS()}
   `;
