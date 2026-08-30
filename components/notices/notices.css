@@ -1,0 +1,42 @@
+/* ================================ */
+/* Modal Preview */
+/* ================================ */
+.modal-preview {
+    position: relative;
+    min-height: 500px;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: auto;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.modal-header,
+.modal-content,
+.modal-footer {
+    padding: var(--space-md);
+}
+
+.modal-content {
+    flex: 1;
+}
+
+.modal-footer {
+    display: flex;
+    gap: var(--space-sm);
+}

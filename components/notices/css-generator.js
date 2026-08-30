@@ -36,6 +36,7 @@ function generateNoticeBorder(
 
 }
 
+
 // ================================
 // Notice CSS Generator
 // ================================
@@ -268,9 +269,223 @@ function generateNoticeCSS() {
     );
 
 
+    // ================================
+    // Modal
+    // ================================
+
+    css += generateNoticeModalCSS(
+        settings.modal
+    );
+
+
     return css.trim();
 
 }
+
+
+// ================================
+// Modal CSS Generator
+// ================================
+
+function generateNoticeModalCSS(
+    modalSettings
+) {
+
+    const radius =
+        `var(--radius-${modalSettings.radius})`;
+
+
+    // ================================
+    // Theme Colours
+    // ================================
+
+    const headerHex =
+        getNoticeThemeColor(
+            modalSettings.header.color
+        );
+
+
+    const contentHex =
+        getNoticeThemeColor(
+            modalSettings.content.color
+        );
+
+
+    const footerHex =
+        getNoticeThemeColor(
+            modalSettings.footer.color
+        );
+
+
+    const overlayHex =
+        getNoticeThemeColor(
+            modalSettings.overlay.color
+        );
+
+
+    // ================================
+    // Readable Text Colours
+    // ================================
+
+    const headerText =
+        getReadableText(
+            headerHex
+        );
+
+
+    const contentText =
+        getReadableText(
+            contentHex
+        );
+
+
+    // ================================
+    // Overlay
+    // ================================
+
+    let css = `
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: ${hexToNoticeRgba(
+        overlayHex,
+        modalSettings.overlay.opacity
+    )};
+}
+`;
+
+
+// ================================
+// Base Modal
+// ================================
+
+css += `
+
+.modal {
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    box-sizing: border-box;
+
+    min-height: 0;
+
+    max-width: 90vw;
+    max-height: 90vh;
+
+    border-radius: ${radius};
+}
+`;
+
+
+// ================================
+// Modal Sizes
+// ================================
+
+const sizeClasses = [
+
+    ["sm", modalSettings.sizes.sm],
+    ["md", modalSettings.sizes.md],
+    ["lg", modalSettings.sizes.lg]
+
+];
+
+
+sizeClasses.forEach(
+    ([size, settings]) => {
+
+        const paddingVertical =
+            `var(--space-${settings.paddingVertical})`;
+
+
+        const paddingHorizontal =
+            `var(--space-${settings.paddingHorizontal})`;
+
+
+        css += `
+
+.modal-${size} {
+    min-width: ${settings.minWidth};
+    min-height: ${settings.minHeight};
+}
+
+.modal-${size} .modal-header,
+.modal-${size} .modal-content,
+.modal-${size} .modal-footer {
+    padding: ${paddingVertical} ${paddingHorizontal};
+}
+`;
+
+    }
+);
+
+
+// ================================
+// Modal Header
+// ================================
+
+css += `
+
+.modal-header {
+    flex-shrink: 0;
+
+    background: ${headerHex};
+    color: ${headerText};
+    font-weight: ${modalSettings.header.weight};
+}
+`;
+
+
+// ================================
+// Modal Content
+// ================================
+
+css += `
+
+.modal-content {
+    flex: 1 1 auto;
+    min-height: 0;
+
+    overflow: auto;
+
+    background: ${contentHex};
+    color: ${contentText};
+    font-weight: ${modalSettings.content.weight};
+}
+`;
+
+
+// ================================
+// Modal Footer
+// ================================
+
+css += `
+
+.modal-footer {
+    display: flex;
+    flex-shrink: 0;
+
+    gap: var(--space-sm);
+
+    justify-content: ${modalSettings.footer.alignment};
+
+    background: ${footerHex};
+}
+`;
+
+
+
+    return css;
+
+}
+
 
 
 // ================================

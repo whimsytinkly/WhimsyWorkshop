@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="components/buttons/buttons.css">
   <link rel="stylesheet" href="components/inputs/inputs.css">
   <link rel="stylesheet" href="components/cards/cards.css">
+  <link rel="stylesheet" href="components/notices/notices.css">
   <link rel="stylesheet" href="components/tabs/tabs.css">
   <link rel="stylesheet" href="components/tables/tables.css">
 </head>
@@ -232,7 +233,7 @@
         <!-- Live Preview -->
         <div id="preview-view">
 
-          <div id="app-preview" class="app-preview" class="card card-main">
+          <div id="app-preview" class="app-preview card card-main">
 
             <!-- Example Application Header -->
             <header class="preview-header card-header">
@@ -436,9 +437,35 @@
 
                       </div>
 
+                      <!-- ================================ -->
+                      <!-- Modal Preview -->
+                      <!-- ================================ -->
+
+                      <div class="modal-preview" data-modal-preview>
+
+                        <div class="modal-preview-controls layout-inline">
+
+                          <button class="button button-primary button-small" type="button" data-modal-trigger="sm">
+                            S Modal
+                          </button>
+
+                          <button class="button button-primary button-small" type="button" data-modal-trigger="md">
+                            M Modal
+                          </button>
+
+                          <button class="button button-primary button-small" type="button" data-modal-trigger="lg">
+                            L Modal
+                          </button>
+
+                        </div>
+                        <div class="modal-container" data-modal-container>
+
+
+                        </div>
+
+                      </div>
+
                     </div>
-
-
                   </div>
 
                   <div class="tab-panel" data-tab-content="tables" hidden>
