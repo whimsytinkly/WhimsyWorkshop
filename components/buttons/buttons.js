@@ -8,12 +8,18 @@ const buttonSizeLabels = {
     large: "Large"
 };
 
+const radiusLabels = {
+    sm: "Small",
+    md: "Medium",
+    lg: "Large"
+};
 
 const buttonSettings = {
 
     small: {
         paddingVertical: "xs",
         paddingHorizontal: "sm",
+        radius: "sm",
         typography: "base",
         weight: "600",
 
@@ -27,6 +33,7 @@ const buttonSettings = {
     medium: {
         paddingVertical: "sm",
         paddingHorizontal: "md",
+        radius: "md",
         typography: "base",
         weight: "600",
 
@@ -40,6 +47,7 @@ const buttonSettings = {
     large: {
         paddingVertical: "md",
         paddingHorizontal: "lg",
+        radius: "lg",
         typography: "base",
         weight: "600",
 
@@ -132,6 +140,27 @@ function generateButtonConfig() {
 
                                 </div>
 
+                                <!-- Radius -->
+
+                                <div class="global-field">
+
+                                    <label
+                                        for="button-${size}-radius">
+                                        Radius
+                                    </label>
+
+                                    <select
+                                        id="button-${size}-radius"
+                                        data-button-size="${size}"
+                                        data-property="radius">
+
+                                        ${generateButtonRadiusOptions(
+                                            settings.radius
+                                        )}
+
+                                    </select>
+
+                                </div>
 
                                 <!-- Typography -->
 
@@ -323,6 +352,30 @@ function generateButtonSpacingOptions(
                 value="${size}"
                 ${size === selected ? "selected" : ""}>
                 ${sizeLabels[size] || size}
+            </option>
+
+        `)
+        .join("");
+
+}
+
+// ================================
+// Radius Options
+// ================================
+
+function generateButtonRadiusOptions(
+    selected
+) {
+
+    return Object.keys(
+        globalSettings.radius
+    )
+        .map(radius => `
+
+            <option
+                value="${radius}"
+                ${radius === selected ? "selected" : ""}>
+                ${radiusLabels[radius] || radius}
             </option>
 
         `)

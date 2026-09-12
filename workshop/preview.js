@@ -75,6 +75,8 @@ function generatePreview() {
 
     const themeCSS = generateThemeCSS();
 
+    const buttonRootCSS = generateButtonRootCSS();
+
     const buttonCSS = generateButtonCSS();
 
     const inputCSS = generateInputCSS();
@@ -92,6 +94,7 @@ function generatePreview() {
     return `
         ${globalCSS}
         ${themeCSS}
+        ${buttonRootCSS}
         ${buttonCSS}
         ${inputCSS}
         ${cardsCSS}

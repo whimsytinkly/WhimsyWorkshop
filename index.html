@@ -211,22 +211,28 @@
 
       <!-- Preview Area -->
       <section class="workshop-main">
+        <div class="view-actions">
+          <!-- Preview / CSS Toggle -->
+          <div class="view-toggle">
 
-        <!-- Preview / CSS Toggle -->
-        <div class="view-toggle">
+            <button class="view-toggle-button active" data-view="preview">
+              Live Preview
+            </button>
 
-          <button class="view-toggle-button active" data-view="preview">
-            Live Preview
+            <button class="view-toggle-button" data-view="css">
+              CSS
+            </button>
+
+            <button class="view-toggle-button" data-view="js">
+              JS
+            </button>
+          </div>
+          <button id="generate-code" class="button button-primary button-medium" style="align-items: flex-end;">
+            Download Code
           </button>
 
-          <button class="view-toggle-button" data-view="css">
-            CSS
-          </button>
-
-          <button class="view-toggle-button" data-view="js">
-            JS
-          </button>
         </div>
+
 
         <h2>Your app</h2>
 
@@ -608,6 +614,7 @@
   <!-- Final CSS assembly -->
   <script src="css-generator.js"></script>
   <script src="js-generator.js"></script>
+  <script src="html-generator.js"></script>
 
   <!-- Workshop -->
   <script src="workshop/preview.js"></script>

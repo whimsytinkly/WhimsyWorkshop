@@ -1,54 +1,66 @@
 // ================================
 // Navigation Settings
 // ================================
+
 let currentNavigationSection = "theme";
 
+
 const navigationItems = [
+
     {
         id: "theme",
         label: "Theme",
         icon: "🎨"
     },
+
     {
         id: "global",
         label: "Global",
         icon: "🌐"
     },
+
     {
         id: "buttons",
         label: "Buttons",
         icon: "🔘"
     },
+
     {
         id: "inputs",
         label: "Inputs",
         icon: "📝"
     },
+
     {
         id: "cards",
         label: "Cards",
         icon: "📦"
     },
+
     {
         id: "tabs",
         label: "Tabs",
         icon: "🗂️"
     },
+
     {
         id: "notices",
         label: "Notices",
         icon: "⚠️"
     },
+
     {
         id: "tables",
         label: "Tables",
         icon: "🧮"
     },
+
     {
         id: "layouts",
         label: "Layouts",
         icon: "📏"
     }
+
 ];
 
 
@@ -79,18 +91,26 @@ function renderNavigation() {
     // ================================
 
     if (sidebar) {
+
         sidebar.innerHTML = "";
         sidebar.hidden = true;
+
     }
+
 
     if (header) {
+
         header.innerHTML = "";
         header.hidden = true;
+
     }
 
+
     if (preview) {
+
         preview.innerHTML = "";
         preview.hidden = true;
+
     }
 
 
@@ -109,7 +129,6 @@ function renderNavigation() {
 
 
     // Sidebar navigation
-    // Used when sidebar exists
 
     if (hasSidebar) {
 
@@ -119,8 +138,6 @@ function renderNavigation() {
 
 
     // Header navigation
-    // Used when there is no sidebar
-    // but the header exists
 
     else if (hasHeader) {
 
@@ -130,7 +147,6 @@ function renderNavigation() {
 
 
     // Preview dropdown
-    // Used when neither exists
 
     else {
 
@@ -140,12 +156,14 @@ function renderNavigation() {
 
 
     if (!container) {
+
         return;
+
     }
 
 
     // ================================
-    // Generate navigation
+    // Preview Dropdown
     // ================================
 
     if (container === preview) {
@@ -159,15 +177,24 @@ function renderNavigation() {
             <select id="preview-navigation-select">
 
                 ${navigationItems
-                .map(item => `
+                    .map(
+                        item => `
 
-                        <option value="${item.id}"
-                        ${item.id === currentNavigationSection ? "selected" : ""}>
-                            ${item.icon} ${item.label}
-                        </option>
+                            <option
+                                value="${item.id}"
+                                ${
+                                    item.id ===
+                                    currentNavigationSection
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                ${item.icon} ${item.label}
+                            </option>
 
-                    `)
-                .join("")}
+                        `
+                    )
+                    .join("")}
 
             </select>
 
@@ -240,7 +267,9 @@ function renderNavigation() {
     // Default Section
     // ================================
 
-    switchWorkshopSection(currentNavigationSection);
+    switchWorkshopSection(
+        currentNavigationSection
+    );
 
 }
 
@@ -300,6 +329,7 @@ function bindNavigationEvents() {
 // ================================
 // Switch Workshop Section
 // ================================
+
 function switchWorkshopSection(
     section
 ) {
@@ -324,7 +354,9 @@ function switchWorkshopSection(
     );
 
 
-    // Update active navigation item
+    // ================================
+    // Update Active Navigation
+    // ================================
 
     document
         .querySelectorAll(
@@ -342,7 +374,9 @@ function switchWorkshopSection(
         );
 
 
-    // Update preview navigation dropdown
+    // ================================
+    // Update Preview Dropdown
+    // ================================
 
     const previewSelect =
         document.querySelector(
@@ -360,9 +394,8 @@ function switchWorkshopSection(
 }
 
 
-
 // ================================
 // Initialise
 // ================================
 
-renderNavigation(currentNavigationSection);
+renderNavigation();

@@ -519,3 +519,9 @@ a {
 #workshop-header-nav .workshop-nav-icon {
     display: none;
 }
+
+.view-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

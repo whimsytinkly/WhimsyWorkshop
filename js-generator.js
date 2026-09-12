@@ -615,6 +615,18 @@ function formatJS(js) {
 
         }
 
+        // =========================
+        // Regex literals
+        // =========================
+
+        if (
+            type === "regex"
+        ) {
+            write(value);
+            noSpaceBeforeNext = false;
+            previousToken = token;
+            return;
+        }
 
         // =========================
         // Strings
@@ -889,6 +901,118 @@ function tokenizeJS(js) {
 
         }
 
+        // =========================
+        // Regex literals
+        // =========================
+
+        if (
+            char === "/" &&
+            js[i + 1] !== "/" &&
+            js[i + 1] !== "*"
+        ) {
+            let canStartRegex = false;
+
+            let previousIndex =
+                tokens.length - 1;
+
+            while (
+                previousIndex >= 0 &&
+                tokens[previousIndex].type === "whitespace"
+            ) {
+                previousIndex--;
+            }
+
+            const previousToken =
+                tokens[previousIndex];
+
+            if (!previousToken) {
+                canStartRegex = true;
+            } else {
+                const previousValue =
+                    previousToken.value;
+
+                canStartRegex =
+                    previousToken.type === "operator" ||
+                    previousValue === "(" ||
+                    previousValue === "[" ||
+                    previousValue === "{" ||
+                    previousValue === "," ||
+                    previousValue === ":" ||
+                    previousValue === ";" ||
+                    previousValue === "=" ||
+                    previousValue === "return" ||
+                    previousValue === "case" ||
+                    previousValue === "throw" ||
+                    previousValue === "=>";
+            }
+
+            if (canStartRegex) {
+                let value = "/";
+                i++;
+
+                let inCharacterClass = false;
+
+                while (
+                    i < js.length
+                ) {
+                    const current =
+                        js[i];
+
+                    value += current;
+                    i++;
+
+                    if (
+                        current === "\\"
+                    ) {
+                        if (
+                            i < js.length
+                        ) {
+                            value += js[i];
+                            i++;
+                        }
+
+                        continue;
+                    }
+
+                    if (
+                        current === "["
+                    ) {
+                        inCharacterClass = true;
+                        continue;
+                    }
+
+                    if (
+                        current === "]"
+                    ) {
+                        inCharacterClass = false;
+                        continue;
+                    }
+
+                    if (
+                        current === "/" &&
+                        !inCharacterClass
+                    ) {
+                        break;
+                    }
+                }
+
+                // Regex flags: g, i, m, s, u, y, d, v
+                while (
+                    i < js.length &&
+                    /[A-Za-z]/.test(js[i])
+                ) {
+                    value += js[i];
+                    i++;
+                }
+
+                tokens.push({
+                    type: "regex",
+                    value
+                });
+
+                continue;
+            }
+        }
 
         // =========================
         // Strings
@@ -1196,7 +1320,14 @@ function generateJS() {
         ${tablesJS}
     `.trim();
 
-    document.querySelector("#generated-js").textContent = formatJS(js);
+    const formattedJS =
+        formatJS(js);
+
+    document
+        .querySelector("#generated-js")
+        .textContent = formattedJS;
+
+    return formattedJS;
 }
 
 

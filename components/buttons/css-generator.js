@@ -1,8 +1,8 @@
 // ================================
-// Generate Button CSS
+// Generate Button Root CSS
 // ================================
 
-function generateButtonCSS() {
+function generateButtonRootCSS() {
 
     let css = "";
 
@@ -10,6 +10,56 @@ function generateButtonCSS() {
     // ================================
     // Button Typography Variables
     // ================================
+
+    for (
+        const [size, settings]
+        of Object.entries(buttonSettings)
+    ) {
+
+        // ================================
+        // Weight Variable
+        // ================================
+
+        css += `
+
+    --button-${size}-weight:
+        ${settings.typography === "custom"
+            ? settings.custom.weight
+            : settings.weight};
+`;
+
+
+        // ================================
+        // Custom Typography Variables
+        // ================================
+
+        if (
+            settings.typography ===
+            "custom"
+        ) {
+
+            css += `
+
+    --button-${size}-size:
+        ${settings.custom.size};
+
+    --button-${size}-line-height:
+        ${settings.custom.lineHeight};
+`;
+        }
+    }
+
+
+    return css;
+
+}
+
+
+// ================================
+// Generate Button Typography
+// ================================
+
+function generateButtonTypography() {
 
     for (
         const [size, settings]
@@ -84,36 +134,6 @@ function generateButtonCSS() {
 
 
         // ================================
-        // Generate Variables
-        // ================================
-
-        css += `
-
-    --button-${size}-weight:
-        ${settings.typography === "custom"
-            ? settings.custom.weight
-            : settings.weight};
-`;
-
-
-        if (
-            settings.typography ===
-            "custom"
-        ) {
-
-            css += `
-
-    --button-${size}-size:
-        ${settings.custom.size};
-
-    --button-${size}-line-height:
-        ${settings.custom.lineHeight};
-`;
-
-        }
-
-
-        // ================================
         // Store Generated Typography
         // ================================
 
@@ -125,6 +145,24 @@ function generateButtonCSS() {
 
     }
 
+}
+
+
+// ================================
+// Generate Button CSS
+// ================================
+
+function generateButtonCSS() {
+
+    let css = "";
+
+
+    // ================================
+    // Generate Typography
+    // ================================
+
+    generateButtonTypography();
+
 
     // ================================
     // Base Button
@@ -133,8 +171,8 @@ function generateButtonCSS() {
     css += `
 
 .button {
-    border: 1px solid transparent;
-    border-radius: var(--radius-sm);
+    border: none;
+    font-family: inherit;
 }
 
     `;
@@ -160,6 +198,9 @@ function generateButtonCSS() {
     padding:
         var(--space-${settings.paddingVertical})
         var(--space-${settings.paddingHorizontal});
+
+    border-radius:
+        var(--radius-${settings.radius});
 
     font-size:
         ${typography.fontSize};
@@ -215,37 +256,68 @@ function generateButtonCSS() {
 }
 
 
-// Generates CSS for button states
+// ================================
+// Generate Button State CSS
+// ================================
+
 function generateButtonStateCSS() {
+
     return `
+
 .button {
-  transition:
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+
+    transition:
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+
 }
+
 
 .button:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 12px color-mix(
-    in srgb,
-    var(--color-accent) 85%,
-    transparent
-  );
+
+    border-color:
+        var(--color-accent);
+
+    box-shadow:
+        0 0 12px color-mix(
+            in srgb,
+            var(--color-accent) 85%,
+            transparent
+        );
+
 }
+
 
 .button:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
+
+    outline:
+        2px solid var(--color-focus);
+
+    outline-offset:
+        2px;
+
 }
+
 
 .button:active {
-  transform: translateY(1px);
+
+    transform:
+        translateY(1px);
+
 }
 
+
 .button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+
+    opacity:
+        0.5;
+
+    cursor:
+        not-allowed;
+
 }
+
 `;
+
 }

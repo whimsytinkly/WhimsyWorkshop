@@ -635,11 +635,10 @@ function getLayoutTypeLabel(
         layout.columns.length;
 
 
-    return `${columnCount} ${
-        columnCount === 1
-            ? "Column"
-            : "Columns"
-    }`;
+    return `${columnCount} ${columnCount === 1
+        ? "Column"
+        : "Columns"
+        }`;
 
 }
 
@@ -748,7 +747,7 @@ function renderLayoutPreview() {
 
     const layout =
         layoutSettings.layouts[
-            Number(select.value)
+        Number(select.value)
         ];
 
 
@@ -902,7 +901,7 @@ function bindLayoutEvents() {
 
             const layout =
                 layoutSettings.layouts[
-                    layoutIndex
+                layoutIndex
                 ];
 
 
@@ -1026,7 +1025,7 @@ function bindLayoutEvents() {
 
                         const layout =
                             layoutSettings.layouts[
-                                index
+                            index
                             ];
 
 
@@ -1083,7 +1082,7 @@ function bindLayoutEvents() {
 
                         const layout =
                             layoutSettings.layouts[
-                                index
+                            index
                             ];
 
 
@@ -1215,7 +1214,7 @@ function bindLayoutEvents() {
 
                         const layout =
                             layoutSettings.layouts[
-                                layoutIndex
+                            layoutIndex
                             ];
 
 
@@ -1262,6 +1261,141 @@ function bindLayoutEvents() {
 
 }
 
+// ================================
+// Generate App Navigation
+// ================================
+
+function generateAppNavigation() {
+
+    const hasHeader =
+        layoutSettings.siteLayout.header;
+
+    const hasSidebar =
+        layoutSettings.siteLayout.sidebar;
+
+
+    // ================================
+    // Header + Sidebar
+    // ================================
+
+    if (hasHeader && hasSidebar) {
+
+        return `
+<header class="app-header">
+    <b>
+            Hello World
+        </b>
+</header>
+
+<aside class="app-sidebar">
+
+    <nav class="app-navigation">
+
+        <a href="index.html">
+            <span class="app-navigation-icon">🏠</span>
+            <span class="app-navigation-label">Home</span>
+        </a>
+
+        <a href="demo.html">
+            <span class="app-navigation-icon">📦</span>
+            <span class="app-navigation-label">Demo</span>
+        </a>
+
+    </nav>
+
+</aside>
+`;
+
+    }
+
+
+    // ================================
+    // Sidebar Only
+    // ================================
+
+    if (hasSidebar) {
+
+        return `
+<aside class="app-sidebar">
+
+    <nav class="app-navigation">
+
+        <a href="index.html">
+            <span class="app-navigation-icon">🏠</span>
+            <span class="app-navigation-label">Home</span>
+        </a>
+
+        <a href="demo.html">
+            <span class="app-navigation-icon">📦</span>
+            <span class="app-navigation-label">Demo</span>
+        </a>
+
+    </nav>
+
+</aside>
+`;
+
+    }
+
+
+    // ================================
+    // Header Only
+    // ================================
+
+    if (hasHeader) {
+
+        return `
+<header class="app-header">
+
+    <nav class="app-navigation">
+ <b>
+            Hello World
+        </b>
+        <a href="index.html">
+            <span class="app-navigation-icon">🏠</span>
+            <span class="app-navigation-label">Home</span>
+        </a>
+
+        <a href="demo.html">
+            <span class="app-navigation-icon">📦</span>
+            <span class="app-navigation-label">Demo</span>
+        </a>
+
+    </nav>
+
+</header>
+`;
+
+    }
+
+
+    // ================================
+    // No Header / No Sidebar
+    // ================================
+
+    return `
+<nav class="app-navigation app-navigation-compact">
+
+    <label for="app-navigation-select">
+        Navigation
+    </label>
+
+    <select id="app-navigation-select">
+
+        <option value="index.html">
+            Home
+        </option>
+
+        <option value="demo.html">
+            Demo
+        </option>
+
+    </select>
+
+</nav>
+`;
+
+}
 
 // ================================
 // Initialise

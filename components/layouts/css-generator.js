@@ -4,36 +4,128 @@
 
 function generateLayoutCSS() {
 
-    return layoutSettings.layouts
-        .map(layout => {
+    const defaultSpacing =
+        resolveLayoutSpacing("default");
 
-            const className =
-                generateLayoutClassName(
-                    layout
-                );
+    return `
+.app-navigation {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+}
+
+.app-navigation a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding:
+        var(--space-sm)
+        var(--space-md);
+    border-radius:
+        var(--radius-md);
+    color:
+        var(--color-text);
+    text-decoration:
+        none;
+}
+
+.app-navigation-icon {
+    flex-shrink: 0;
+}
+
+.app-navigation a:hover {
+    background:
+        var(--color-secondary);
+    color:
+        var(--color-secondary-text);
+}
+
+.app-header {
+    padding:
+        var(--space-sm)
+        var(--space-md);
+    width: 100%;
+    min-height: var(--space-xxl);
+    position: relative;
+    z-index: 2;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.app-sidebar .app-navigation {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.app-sidebar .app-navigation a {
+    white-space: nowrap;
+}
+
+.app-sidebar .app-navigation-label {
+    display: none;
+}
+
+.app-sidebar:hover .app-navigation-label {
+    display: inline;
+}
+
+.app-sidebar {
+    position: fixed;
+    left: 0;
+    top: var(--space-xxl);
+    height: 100vh;
+    width: 64px;
+    padding: var(--space-sm);
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-border);
+    overflow: hidden;
+    transition: width 0.2s ease;
+}
+
+.app-sidebar:hover {
+    width: 200px;
+}
+
+.app-main-with-sidebar {
+    margin-left: 64px;
+}
+
+.app-main {
+    padding:
+        var(--space-lg)
+        var(--space-md);
+}
+
+` + layoutSettings.layouts
+            .map(layout => {
+
+                const className =
+                    generateLayoutClassName(
+                        layout
+                    );
 
 
-            const horizontalSpacing =
-                resolveLayoutSpacing(
-                    layout.spacingHorizontal
-                );
+                const horizontalSpacing =
+                    resolveLayoutSpacing(
+                        layout.spacingHorizontal
+                    );
 
 
-            const verticalSpacing =
-                resolveLayoutSpacing(
-                    layout.spacingVertical
-                );
+                const verticalSpacing =
+                    resolveLayoutSpacing(
+                        layout.spacingVertical
+                    );
 
 
-            // =========================
-            // Inline
-            // =========================
+                // =========================
+                // Inline
+                // =========================
 
-            if (
-                layout.type === "inline"
-            ) {
+                if (
+                    layout.type === "inline"
+                ) {
 
-                return `
+                    return `
 
 .${className} {
     display: flex;
@@ -44,20 +136,20 @@ function generateLayoutCSS() {
 
 `;
 
-            }
+                }
 
 
-            // =========================
-            // Columns
-            // =========================
+                // =========================
+                // Columns
+                // =========================
 
-            const columns =
-                calculateLayoutColumns(
-                    layout.columns
-                );
+                const columns =
+                    calculateLayoutColumns(
+                        layout.columns
+                    );
 
 
-            return `
+                return `
 
 .${className} {
     display: grid;
@@ -68,8 +160,8 @@ function generateLayoutCSS() {
 
 `;
 
-        })
-        .join("");
+            })
+            .join("");
 
 }
 
