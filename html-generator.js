@@ -259,6 +259,71 @@ function downloadHTMLFile() {
 
 }
 
+function downloadHTMLZipFile() {
+
+    const html =
+        generateStarterHTML();
+    
+    const demohtml =
+        generateDemoHTML();
+
+    const css =
+        generateCSS();
+
+    const js =
+        generateJS();
+
+
+    const zip =
+        new JSZip();
+
+
+    zip.file(
+        "index.html",
+        html
+    );
+
+    zip.file(
+        "demo.html",
+        demohtml
+    );
+
+    zip.file(
+        "base.css",
+        css
+    );
+
+    zip.file(
+        "base.js",
+        js
+    );
+
+
+    zip
+        .generateAsync({
+            type: "blob"
+        })
+        .then(
+            blob => {
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                const link =
+                    document.createElement("a");
+
+                link.href = url;
+                link.download = "whimsy-app.zip";
+
+                link.click();
+
+                URL.revokeObjectURL(url);
+
+            }
+        );
+
+}
+
 // ================================
 // Event Binding
 // ================================
@@ -269,7 +334,7 @@ document
         "click",
         () => {
 
-            downloadHTMLFile();
+            downloadHTMLZipFile();
 
         }
     );
