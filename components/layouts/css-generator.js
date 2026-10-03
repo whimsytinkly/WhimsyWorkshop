@@ -156,6 +156,7 @@ function generateLayoutCSS() {
     grid-template-columns: ${columns};
     column-gap: ${horizontalSpacing};
     row-gap: ${verticalSpacing};
+    align-items: start;
 }
 
 `;
