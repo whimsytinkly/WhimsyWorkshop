@@ -177,6 +177,7 @@
 }
 
 body {
+  margin: 0;
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-base);
@@ -184,36 +185,42 @@ body {
 }
 
 .subtext {
+  margin: 0;
   font-size: var(--font-size-subtext);
   font-weight: var(--font-weight-subtext);
   line-height: var(--line-height-subtext);
 }
 
 h1 {
+  margin: 0;
   font-size: var(--font-size-h1);
   font-weight: var(--font-weight-h1);
   line-height: var(--line-height-h1);
 }
 
 h2 {
+  margin: 0;
   font-size: var(--font-size-h2);
   font-weight: var(--font-weight-h2);
   line-height: var(--line-height-h2);
 }
 
 h3 {
+  margin: 0;
   font-size: var(--font-size-h3);
   font-weight: var(--font-weight-h3);
   line-height: var(--line-height-h3);
 }
 
 h4 {
+  margin: 0;
   font-size: var(--font-size-h4);
   font-weight: var(--font-weight-h4);
   line-height: var(--line-height-h4);
 }
 
 h5 {
+  margin: 0;
   font-size: var(--font-size-h5);
   font-weight: var(--font-weight-h5);
   line-height: var(--line-height-h5);
