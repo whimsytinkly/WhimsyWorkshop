@@ -226,15 +226,28 @@ Refer to the generated JavaScript files for component-specific configuration and
 
 Keep the required files together and preserve their expected loading order when integrating them into a project.
 
+## Customisation
+
+The generated CSS and JavaScript can be edited directly to suit your project. Keep a backup of the original files if you want to preserve the initial generated output.
+
+## Windows: Unblock Downloaded ZIP Files
+
+If Windows prevents you from extracting the downloaded ZIP file:
+
+1. Right-click the ZIP file.
+2. Select **Properties**.
+3. Under the **General** tab, look for the **Security** section.
+4. Tick **Unblock**.
+5. Click **Apply**, then **OK**.
+6. Extract the ZIP file again.
+
+If the **Unblock** checkbox is not shown, the file may not need unblocking.
+
 ## Security Notice
 
 Only use generated code from sources you trust. Review the CSS and JavaScript before integrating them into your project, especially if the source or configuration is untrusted.
 
 JavaScript can execute code in the context of the page where it is loaded. Do not run unfamiliar code blindly.
-
-## Customisation
-
-The generated CSS and JavaScript can be edited directly to suit your project. Keep a backup of the original files if you want to preserve the initial generated output.
 
 Happy building! ✨`;
 }
