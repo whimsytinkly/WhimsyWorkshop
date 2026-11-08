@@ -91,9 +91,7 @@ function generateLayoutCSS() {
 }
 
 .app-main {
-    padding:
-        var(--space-lg)
-        var(--space-md);
+    padding: var(--space-xl) var(--space-xl);
 }
 
 ` + layoutSettings.layouts
@@ -217,10 +215,8 @@ function calculateLayoutColumns(
                     return total;
                 }
 
-
                 const number =
                     Number(value);
-
 
                 if (
                     Number.isFinite(number) &&
@@ -230,7 +226,6 @@ function calculateLayoutColumns(
                     return total + number;
 
                 }
-
 
                 return total;
 
@@ -250,7 +245,7 @@ function calculateLayoutColumns(
 
 
     // ================================
-    // Calculate Remaining Percentage
+    // Calculate Remaining Weight
     // ================================
 
     const remaining =
@@ -259,8 +254,7 @@ function calculateLayoutColumns(
             100 - explicitTotal
         );
 
-
-    const autoPercentage =
+    const autoWeight =
         autoCount > 0
             ? remaining / autoCount
             : 0;
@@ -277,30 +271,29 @@ function calculateLayoutColumns(
                 isAuto(value)
             ) {
 
-                return `${autoPercentage}%`;
+                return `${autoWeight}fr`;
 
             }
-
 
             const number =
                 Number(value);
 
-
             if (
-                Number.isFinite(number)
+                Number.isFinite(number) &&
+                number > 0
             ) {
 
-                return `${number}%`;
+                return `${number}fr`;
 
             }
 
-
-            return "0%";
+            return "0fr";
 
         })
         .join(" ");
 
 }
+
 
 
 // ================================
