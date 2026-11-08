@@ -151,6 +151,10 @@ body {
     line-height: var(--line-height-base);
 }
 
+h1, h2, h3, h4, h5 {
+    margin: 0;
+}
+
 h1 {
     font-size: var(--font-size-h1);
     font-weight: var(--font-weight-h1);
