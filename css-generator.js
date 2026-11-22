@@ -188,10 +188,6 @@ h5 {
 p {
     margin-top: 0;
 }
-
-a {
-    color: var(--color-accent);
-}
 `;
 }
 

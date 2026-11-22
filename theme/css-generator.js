@@ -29,6 +29,12 @@ function generateThemeCSS() {
         css += `  --color-${key}-text: ${textColor};
 `;
     }
+    css += `
+        /* Shadows */
+        --shadow-sm: 0 2px 8px rgb(0 0 0 / .08);
+        --shadow-md: 0 8px 24px rgb(0 0 0 / .10);
+        --shadow-lg: 0 16px 48px rgb(0 0 0 / .12);
+        `;
 
     return css;
 }

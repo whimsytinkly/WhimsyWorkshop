@@ -196,7 +196,7 @@ function generateNoticeCSS() {
     ${generateNoticeBorder(
         settings.borderSides,
         infoHex
-    )};
+    )}
 }
 
 .notice-success {
@@ -208,7 +208,7 @@ function generateNoticeCSS() {
     ${generateNoticeBorder(
         settings.borderSides,
         successHex
-    )};
+    )}
 }
 
 .notice-warning {
@@ -220,7 +220,7 @@ function generateNoticeCSS() {
     ${generateNoticeBorder(
         settings.borderSides,
         warningHex
-    )};
+    )}
 }
 
 .notice-error {
@@ -232,7 +232,7 @@ function generateNoticeCSS() {
     ${generateNoticeBorder(
         settings.borderSides,
         errorHex
-    )};
+    )}
 }
 `;
 
@@ -316,6 +316,22 @@ function generateNoticeModalCSS(
             modalSettings.footer.color
         );
 
+    const headerVar =
+        getNoticeThemeCSSColor(
+            modalSettings.header.color
+        );
+
+
+    const contentVar =
+        getNoticeThemeCSSColor(
+            modalSettings.content.color
+        );
+
+
+    const footerVar =
+        getNoticeThemeCSSColor(
+            modalSettings.footer.color
+        );
 
     const overlayHex =
         getNoticeThemeColor(
@@ -436,7 +452,7 @@ css += `
 .modal-header {
     flex-shrink: 0;
 
-    background: ${headerHex};
+    background: ${headerVar};
     color: ${headerText};
     font-weight: ${modalSettings.header.weight};
 }
@@ -455,7 +471,7 @@ css += `
 
     overflow: auto;
 
-    background: ${contentHex};
+    background: ${contentVar};
     color: ${contentText};
     font-weight: ${modalSettings.content.weight};
 }
@@ -476,7 +492,7 @@ css += `
 
     justify-content: ${modalSettings.footer.alignment};
 
-    background: ${footerHex};
+    background: ${footerVar};
 }
 `;
 
@@ -693,6 +709,15 @@ function getNoticeThemeColor(
 
 }
 
+
+// ================================
+// Returns a CSS variable for the given notice colour
+// ================================
+function getNoticeThemeCSSColor(color) {
+
+    return `var(--color-${color})`;
+
+}
 
 // ================================
 // Toast Position

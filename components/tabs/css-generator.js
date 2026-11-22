@@ -67,19 +67,19 @@ function generateTabsCSS() {
 
 
     const radiusTopLeft =
-        `var(--radius-${radius.topLeft})`;
+        generateRadiusValue(radius.topLeft);
 
 
     const radiusTopRight =
-        `var(--radius-${radius.topRight})`;
+        generateRadiusValue(radius.topRight);
 
 
     const radiusBottomRight =
-        `var(--radius-${radius.bottomRight})`;
+        generateRadiusValue(radius.bottomRight);
 
 
     const radiusBottomLeft =
-        `var(--radius-${radius.bottomLeft})`;
+        generateRadiusValue(radius.bottomLeft);
 
 
     // ================================
@@ -154,6 +154,19 @@ function generateTabsCSS() {
 
 
     return css.trim();
+
+}
+
+// ================================
+// Generate Radius Value - Handles "none" case
+// ================================
+function generateRadiusValue(radius) {
+
+    if (radius === "none") {
+        return "0";
+    }
+
+    return `var(--radius-${radius})`;
 
 }
 

@@ -209,17 +209,11 @@ function getReadableText(background) {
 
 
 // ================================
-// Generate Theme CSS
+// Validates Theme CSS
 // ================================
+function validateThemeInputs() {
 
-function generateThemeCSS() {
-
-  let css = "";
-
-
-  for (
-    const key of Object.keys(themeSettings)
-  ) {
+  for (const key of Object.keys(themeSettings)) {
 
     const input =
       [...document.querySelectorAll(".hex-input")]
@@ -229,56 +223,21 @@ function generateThemeCSS() {
             `${labels[key]} hex value`
         );
 
-
-    const value =
-      input.value.trim();
-
+    const value = input.value.trim();
 
     if (!validHex(value)) {
-
       input.classList.add("invalid");
-
       input.focus();
-
-      return null;
-
+      return false;
     }
 
+    input.classList.remove("invalid");
 
-    themeSettings[key] =
-      value.toUpperCase();
-
-
-    css += `
-      --color-${key}: ${themeSettings[key]};
-    `;
-
-
-    if (
-      [
-        "primary",
-        "secondary",
-        "danger"
-      ].includes(key)
-    ) {
-
-      const textColor =
-        getReadableText(
-          themeSettings[key]
-        );
-
-
-      css += `
-        --color-${key}-text: ${textColor};
-      `;
-
-    }
+    themeSettings[key] = value.toUpperCase();
 
   }
 
-
-  return css;
-
+  return true;
 }
 
 
@@ -288,10 +247,7 @@ function generateThemeCSS() {
 
 function applyThemeConfig() {
 
-  const themeCSS =
-    generateThemeCSS();
-
-  if (themeCSS === null) {
+  if (!validateThemeInputs()) {
     return;
   }
 
@@ -329,8 +285,8 @@ document
 
         const isPreview =
           button.dataset.view === "preview";
-        
-          
+
+
         const isCSS =
           button.dataset.view === "css";
 
@@ -352,7 +308,7 @@ document
             ? "block"
             : "none";
 
-        
+
         document
           .querySelector("#js-view")
           .style.display =
@@ -425,7 +381,7 @@ document
   );
 
 
-  
+
 // ================================
 // Copy Generated CSS
 // ================================

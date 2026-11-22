@@ -163,21 +163,6 @@ function generateButtonCSS() {
 
     generateButtonTypography();
 
-
-    // ================================
-    // Base Button
-    // ================================
-
-    css += `
-
-.button {
-    border: none;
-    font-family: inherit;
-}
-
-    `;
-
-
     // ================================
     // Button Sizes
     // ================================
@@ -257,7 +242,7 @@ function generateButtonCSS() {
 
 
 // ================================
-// Generate Button State CSS
+// Generate Button State CSS -- Base Button
 // ================================
 
 function generateButtonStateCSS() {
@@ -265,12 +250,11 @@ function generateButtonStateCSS() {
     return `
 
 .button {
-
-    transition:
-        box-shadow 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
-
+  border: none;
+  font-family: inherit;
+  transition: box-shadow 0.2s ease,
+              border-color 0.2s ease,
+              transform 0.2s ease;
 }
 
 
