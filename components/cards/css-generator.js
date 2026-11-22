@@ -8,7 +8,6 @@ function generateCardCSS() {
 
 .card {
     overflow: hidden;
-    box-sizing: border-box;
 }
 
 

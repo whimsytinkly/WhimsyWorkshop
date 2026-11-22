@@ -389,7 +389,6 @@ css += `
     flex-direction: column;
 
     overflow: hidden;
-    box-sizing: border-box;
 
     min-height: 0;
 

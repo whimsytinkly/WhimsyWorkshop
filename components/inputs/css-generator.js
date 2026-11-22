@@ -9,7 +9,6 @@ function generateInputBaseCSS() {
 .input,
 .textarea {
   width: 100%;
-  box-sizing: border-box;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   color: var(--color-text);
